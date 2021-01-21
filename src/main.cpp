@@ -1,11 +1,17 @@
 #include <SFML/Graphics.hpp>
 
+#include "AssetManager.h"
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    AssetManager manager;
 
+    manager.loadTexture("Assets/testing.png", TextureType::GRASS);
+
+    sf::Sprite sprite(manager.getTexture(TextureType::GRASS));
+
+
+    sf::RenderWindow window(sf::VideoMode(400, 400), "SFML works!");
     while (window.isOpen())
     {
         sf::Event event;
@@ -16,9 +22,11 @@ int main()
         }
 
         window.clear();
-        window.draw(shape);
+        window.draw(sprite);
         window.display();
     }
+
+    return 0;
 
     return 0;
 }
