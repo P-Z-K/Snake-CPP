@@ -1,6 +1,8 @@
 #include "AssetManager.h"
 
-AssetManager::AssetManager()
+AssetManager::AssetManager() :
+	m_textures(),
+	m_fonts()
 {
 
 }

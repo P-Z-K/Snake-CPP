@@ -43,6 +43,7 @@ void SceneManager::processSceneChange()
 
         m_sceneStack.push(std::move(m_newScene));
         m_shouldAdd = false;
+        m_sceneStack.top()->init();
     }
 }
 

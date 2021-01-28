@@ -151,17 +151,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\MainMenu.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\AssetManager.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\SceneManager.h" />
+    <ClInclude Include="include\MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\testing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\PottaOne-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
