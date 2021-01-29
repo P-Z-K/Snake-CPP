@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GamePlay.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GamePlay.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\AssetManager.h" />
     <ClInclude Include="include\Scene.h" />
@@ -165,6 +167,8 @@
     <ClInclude Include="include\MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\head.png" />
+    <Image Include="Assets\tail.png" />
     <Image Include="Assets\testing.png" />
   </ItemGroup>
   <ItemGroup>

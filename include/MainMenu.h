@@ -5,6 +5,7 @@
 #include <SFML\System\Time.hpp>
 
 #include "Scene.h"
+#include "GamePlay.h"
 #include "Game.h"
 
 class MainMenu : public Scene
@@ -28,6 +29,9 @@ public:
 	void update(const sf::Time& deltaTime) override;
 	void init() override;
 	void draw() override;
+
+private:
+	void sceneChanger();
 
 };
 

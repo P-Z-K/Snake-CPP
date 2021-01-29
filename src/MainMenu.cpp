@@ -22,21 +22,12 @@ void MainMenu::handleInputs()
 		{
 			if (e.key.code == sf::Keyboard::Up || e.key.code == sf::Keyboard::Down)
 			{
-				if (!m_isPlayButtonFocused)
-				{
-					m_isPlayButtonFocused = true;
-					m_isExitButtonFocused = false;
-				}
-				else
-				{
-					m_isPlayButtonFocused = false;
-					m_isExitButtonFocused = true;
-				}
+				m_isPlayButtonFocused = !m_isPlayButtonFocused;
+				m_isExitButtonFocused = !m_isExitButtonFocused;
 			}
 			else if (e.key.code == sf::Keyboard::Enter)
 			{
-				// load new scene (game scene)
-				//m_context->m_sceneManager->push(std::make_unique<>(m_context));
+				sceneChanger();
 			}
 		}
 	}
@@ -111,4 +102,14 @@ void MainMenu::draw()
 	m_context->m_window->draw(m_exitButton);
 
 	m_context->m_window->display();
+}
+
+void MainMenu::sceneChanger()
+{
+	if (m_isExitButtonFocused)
+		m_context->m_window->close();
+
+	if (m_isPlayButtonFocused)
+		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
+
 }

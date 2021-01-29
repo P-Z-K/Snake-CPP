@@ -30,6 +30,9 @@
     <ClCompile Include="src\MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GamePlay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Scene.h">
@@ -47,9 +50,18 @@
     <ClInclude Include="include\MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\GamePlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\testing.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\head.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\tail.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

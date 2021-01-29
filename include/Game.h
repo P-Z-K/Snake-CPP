@@ -21,7 +21,7 @@ struct Context
 	{
 		m_assetManager = std::make_unique<AssetManager>();
 		m_sceneManager = std::make_unique<SceneManager>();
-		m_window = std::make_unique<sf::RenderWindow>();
+		m_window       = std::make_unique<sf::RenderWindow>();
 	}
 };
 
