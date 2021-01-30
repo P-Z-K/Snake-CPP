@@ -167,6 +167,7 @@
     <ClInclude Include="include\MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\grass.png" />
     <Image Include="Assets\head.png" />
     <Image Include="Assets\tail.png" />
     <Image Include="Assets\testing.png" />

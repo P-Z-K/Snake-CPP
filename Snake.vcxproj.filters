@@ -64,6 +64,9 @@
     <Image Include="Assets\tail.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\PottaOne-Regular.ttf" />

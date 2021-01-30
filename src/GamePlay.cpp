@@ -33,13 +33,36 @@ void GamePlay::init()
 	m_context->m_assetManager->loadTexture("Assets/tail.png", TextureType::SNAKETAIL);
 	m_context->m_assetManager->loadTexture("Assets/head.png", TextureType::SNAKEHEAD);
 	m_context->m_assetManager->loadTexture("Assets/grass.png", TextureType::GRASS, true);
+	m_context->m_assetManager->loadTexture("Assets/wall.png", TextureType::WALL, true);
 
 	m_snakeHead.setTexture(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD));
 	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
 
+	for (auto& wall : m_walls)
+	{
+		wall.setTexture(m_context->m_assetManager->getTexture(TextureType::WALL));
+	}
+
+	sf::IntRect screenSizes(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+	sf::Vector2u wallSizes(m_context->m_assetManager->getTexture(TextureType::WALL).getSize());
+
+	// Top wall
+	m_walls[0].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
+
+	// Left wall
+	m_walls[1].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
+
+	// Bottom wall
+	m_walls[2].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
+	m_walls[2].setPosition(0, screenSizes.height - wallSizes.y);
+
+	// Right wall
+	m_walls[3].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
+	m_walls[3].setPosition(screenSizes.width - wallSizes.x, 0);
+
+
 	m_grass.setTextureRect(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
 
-	std::cout << m_grass.getTextureRect().height << ';' << m_grass.getTextureRect().width;
 
 	for (auto& tail : m_tail)
 	{
@@ -67,14 +90,18 @@ void GamePlay::draw()
 
 	m_context->m_window->draw(m_grass);
 
+	for (auto& wall : m_walls)
+	{
+		m_context->m_window->draw(wall);
+	}
+
+
 	m_context->m_window->draw(m_snakeHead);
 
 	for (auto& tail : m_tail)
 	{
 		m_context->m_window->draw(tail);
 	}
-
-	//m_context->m_window->draw(m_snakeTail);
 
 	m_context->m_window->display();
 }
