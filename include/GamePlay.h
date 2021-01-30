@@ -11,8 +11,9 @@ class GamePlay : public Scene
 private:
 	std::shared_ptr<Context> m_context;
 
-	sf::Sprite m_snakeHead;
 	// Testing purposes
+	sf::Sprite m_snakeHead;
+	sf::Sprite m_grass;
 	std::array<sf::Sprite, 5> m_tail;
 	//sf::Sprite m_snakeTail;
 

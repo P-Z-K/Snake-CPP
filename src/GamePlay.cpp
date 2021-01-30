@@ -32,8 +32,14 @@ void GamePlay::init()
 {
 	m_context->m_assetManager->loadTexture("Assets/tail.png", TextureType::SNAKETAIL);
 	m_context->m_assetManager->loadTexture("Assets/head.png", TextureType::SNAKEHEAD);
+	m_context->m_assetManager->loadTexture("Assets/grass.png", TextureType::GRASS, true);
 
 	m_snakeHead.setTexture(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD));
+	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
+
+	m_grass.setTextureRect(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+
+	std::cout << m_grass.getTextureRect().height << ';' << m_grass.getTextureRect().width;
 
 	for (auto& tail : m_tail)
 	{
@@ -58,6 +64,8 @@ void GamePlay::init()
 void GamePlay::draw()
 {
 	m_context->m_window->clear();
+
+	m_context->m_window->draw(m_grass);
 
 	m_context->m_window->draw(m_snakeHead);
 

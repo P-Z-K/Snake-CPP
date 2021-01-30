@@ -28,7 +28,7 @@ public:
 
 private:
 	std::map<TextureType, std::unique_ptr<sf::Texture>> m_textures;
-	std::map<FontType, std::unique_ptr<sf::Font>>		 m_fonts;
+	std::map<FontType, std::unique_ptr<sf::Font>>		m_fonts;
 
 public:
 	void loadTexture(const std::string& filePath, TextureType type, bool isRepeated = false);

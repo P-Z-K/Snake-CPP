@@ -7,7 +7,7 @@
 #include "AssetManager.h"
 #include "SceneManager.h"
 
-constexpr size_t W_LENGTH = 360;
+constexpr size_t W_LENGTH = 480;
 constexpr size_t W_WIDTH = 640;
 
 
