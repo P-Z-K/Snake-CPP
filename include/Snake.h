@@ -4,6 +4,14 @@
 
 #include <vector>
 
+enum class SnakeDirection
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+};
+
 class Snake : public sf::Drawable
 {
 private:
@@ -17,8 +25,10 @@ public:
 public:
 	void init(const sf::Texture& head, const sf::Texture& tail);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	void move(SnakeDirection newDir);
 
 private:
 	void initPosition();
+	std::unique_ptr<sf::Vector2f> dirToVector(SnakeDirection dir);
 };
 

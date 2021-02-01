@@ -1,7 +1,8 @@
 #include "GamePlay.h"
 
 GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
-	m_context(context)
+	m_context(context),
+	m_snakeDir(SnakeDirection::RIGHT)
 {
 }
 
@@ -19,14 +20,35 @@ void GamePlay::handleInputs()
 			m_context->m_window->close();
 		else if (e.type == sf::Event::KeyPressed)
 		{
+			SnakeDirection newDir{};
+
 			if (e.key.code == sf::Keyboard::Escape)
 				m_context->m_window->close();
+			else if (e.key.code == sf::Keyboard::Up)
+				newDir = SnakeDirection::UP;
+			else if (e.key.code == sf::Keyboard::Down)
+				newDir = SnakeDirection::DOWN;
+			else if (e.key.code == sf::Keyboard::Left)
+				newDir = SnakeDirection::LEFT;
+			else if (e.key.code == sf::Keyboard::Right)
+				newDir = SnakeDirection::RIGHT;
+
+			m_snakeDir = newDir;
 		}
 	}
 }
 
 void GamePlay::update(const sf::Time& deltaTime)
 {
+	elapsedTime += deltaTime;
+
+	// TODO: Remove magic number
+	while (elapsedTime.asSeconds() > 0.1f)
+	{
+		m_snake.move(m_snakeDir);
+		elapsedTime = sf::Time::Zero;
+	}
+
 
 }
 
