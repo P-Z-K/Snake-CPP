@@ -2,6 +2,7 @@
 
 #include <SFML\System\Time.hpp>
 
+
 class Scene
 {
 public:

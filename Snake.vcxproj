@@ -167,6 +167,7 @@
     <ClInclude Include="include\SceneManager.h" />
     <ClInclude Include="include\MainMenu.h" />
     <ClInclude Include="include\Snake.h" />
+    <ClInclude Include="include\Settings.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\grass.png" />

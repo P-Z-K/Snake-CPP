@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include "Settings.h"
+
 enum class SnakeDirection
 {
 	UP,
@@ -16,8 +18,8 @@ class Snake : public sf::Drawable
 {
 private:
 	std::vector<sf::Sprite> m_snakeBody;
-	sf::Texture m_tailTexture;
 	std::vector<sf::Sprite>::iterator m_head;
+	sf::Vector2f m_gridStartPos;
 
 public:
 	Snake();

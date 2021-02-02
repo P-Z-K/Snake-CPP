@@ -11,11 +11,13 @@ class GamePlay : public Scene
 {
 private:
 	sf::Time elapsedTime;
+	sf::Event m_event;
 	std::shared_ptr<Context> m_context;
 
 	std::array<sf::Sprite, 4> m_walls;
 	sf::Sprite m_grass;
 
+	const float m_snakeSpeed;
 	SnakeDirection m_snakeDir;
 	Snake m_snake;
 
@@ -28,6 +30,9 @@ public:
 	void update(const sf::Time& deltaTime) override;
 	void init() override;
 	void draw() override;
+
+private:
+	void snakeMovementHandler(sf::Keyboard::Key key);
 
 };
 

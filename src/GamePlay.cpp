@@ -2,8 +2,11 @@
 
 GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_context(context),
-	m_snakeDir(SnakeDirection::RIGHT)
+	m_snakeDir(SnakeDirection::RIGHT),
+	m_snakeSpeed(SNAKE_SPEED),
+	m_event()
 {
+	std::cout << sizeof(sf::Vector2f);
 }
 
 GamePlay::~GamePlay()
@@ -12,28 +15,16 @@ GamePlay::~GamePlay()
 
 void GamePlay::handleInputs()
 {
-	sf::Event e;
-
-	while (m_context->m_window->pollEvent(e))
+	while (m_context->m_window->pollEvent(m_event))
 	{
-		if (e.type == sf::Event::Closed)
+		if (m_event.type == sf::Event::Closed)
 			m_context->m_window->close();
-		else if (e.type == sf::Event::KeyPressed)
+		else if (m_event.type == sf::Event::KeyPressed)
 		{
-			SnakeDirection newDir{};
-
-			if (e.key.code == sf::Keyboard::Escape)
+			if (m_event.key.code == sf::Keyboard::Escape)
 				m_context->m_window->close();
-			else if (e.key.code == sf::Keyboard::Up)
-				newDir = SnakeDirection::UP;
-			else if (e.key.code == sf::Keyboard::Down)
-				newDir = SnakeDirection::DOWN;
-			else if (e.key.code == sf::Keyboard::Left)
-				newDir = SnakeDirection::LEFT;
-			else if (e.key.code == sf::Keyboard::Right)
-				newDir = SnakeDirection::RIGHT;
-
-			m_snakeDir = newDir;
+			
+			snakeMovementHandler(m_event.key.code);
 		}
 	}
 }
@@ -42,8 +33,8 @@ void GamePlay::update(const sf::Time& deltaTime)
 {
 	elapsedTime += deltaTime;
 
-	// TODO: Remove magic number
-	while (elapsedTime.asSeconds() > 0.1f)
+	// Its a snake speed limiter
+	while (elapsedTime.asSeconds() > m_snakeSpeed)
 	{
 		m_snake.move(m_snakeDir);
 		elapsedTime = sf::Time::Zero;
@@ -102,4 +93,38 @@ void GamePlay::draw()
 	m_context->m_window->draw(m_snake);
 
 	m_context->m_window->display();
+}
+
+void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
+{
+	SnakeDirection newDir{};
+	switch (key)
+	{	
+	default:
+		newDir = SnakeDirection::RIGHT;
+		break;
+	case sf::Keyboard::Up:
+		newDir = SnakeDirection::UP;
+		break;
+	case sf::Keyboard::Down:
+		newDir = SnakeDirection::DOWN;
+		break;
+	case sf::Keyboard::Left:
+		newDir = SnakeDirection::LEFT;
+		break;
+	case sf::Keyboard::Right:
+		newDir = SnakeDirection::RIGHT;
+		break;		
+	}
+
+	// TODO: it could be better implemented
+	// Prevent snake from doing illegal moves
+	if (newDir == SnakeDirection::UP && m_snakeDir == SnakeDirection::DOWN ||
+		newDir == SnakeDirection::DOWN && m_snakeDir == SnakeDirection::UP ||
+		newDir == SnakeDirection::LEFT && m_snakeDir == SnakeDirection::RIGHT ||
+		newDir == SnakeDirection::RIGHT && m_snakeDir == SnakeDirection::LEFT
+		)
+		return;
+		
+	m_snakeDir = newDir;
 }
