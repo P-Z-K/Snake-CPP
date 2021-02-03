@@ -62,7 +62,7 @@ void MainMenu::init()
 	// Set origin on the middle
 	m_title.setOrigin(m_title.getGlobalBounds().width / 2, m_title.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_title.setPosition(W_WIDTH / 2, 50.f);
+	m_title.setPosition(Settings::W_WIDTH / 2, 50.f);
 
 	// ================================
 
@@ -75,7 +75,7 @@ void MainMenu::init()
 	// Set origin on the middle
 	m_playButton.setOrigin(m_playButton.getGlobalBounds().width / 2, m_playButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_playButton.setPosition(W_WIDTH / 2, 165.f);
+	m_playButton.setPosition(Settings::W_WIDTH / 2, 165.f);
 
 	// ================================
 
@@ -88,7 +88,7 @@ void MainMenu::init()
 	// Set origin on the middle
 	m_exitButton.setOrigin(m_exitButton.getGlobalBounds().width / 2, m_exitButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_exitButton.setPosition(W_WIDTH / 2, 220.f);
+	m_exitButton.setPosition(Settings::W_WIDTH / 2, 220.f);
 
 	// ================================
 }

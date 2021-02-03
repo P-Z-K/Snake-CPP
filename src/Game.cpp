@@ -4,7 +4,7 @@
 Game::Game() :
 	m_context(std::make_shared<Context>())
 {
-	m_context->m_window->create(sf::VideoMode(W_WIDTH, W_LENGTH),
+	m_context->m_window->create(sf::VideoMode(Settings::W_WIDTH, Settings::W_LENGTH),
 		"Snake",
 		sf::Style::Close);
 

@@ -3,7 +3,7 @@
 GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_context(context),
 	m_snakeDir(SnakeDirection::RIGHT),
-	m_snakeSpeed(SNAKE_SPEED),
+	m_snakeSpeed(Settings::SNAKE_SPEED),
 	m_event()
 {
 	std::cout << sizeof(sf::Vector2f);

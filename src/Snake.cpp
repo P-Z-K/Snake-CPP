@@ -1,10 +1,9 @@
 #include "Snake.h"
 
 Snake::Snake() :
-	// TODO: Remove magic number
-	m_snakeBody(std::vector<sf::Sprite>(START_SNAKE_LENGTH)),
+	m_snakeBody(std::vector<sf::Sprite>(Settings::START_SNAKE_LENGTH)),
 	m_head(m_snakeBody.begin()),
-	m_gridStartPos(GRID_START_POS.x, GRID_START_POS.y)
+	m_gridStartPos(Settings::GRID_START_POS.x, Settings::GRID_START_POS.y)
 {
 }
 
@@ -43,6 +42,8 @@ void Snake::move(SnakeDirection newDir)
 
 void Snake::initPosition()
 {
+	using Settings::CELL_SIZE;
+
 	m_head->setPosition(CELL_SIZE * m_gridStartPos.x, CELL_SIZE * m_gridStartPos.y);
 
 	// Snake's body is the straight line on x axis
@@ -56,6 +57,8 @@ void Snake::initPosition()
 
 std::unique_ptr<sf::Vector2f> Snake::dirToVector(SnakeDirection dir)
 {
+	using Settings::CELL_SIZE;
+
 	switch (dir)
 	{
 	case SnakeDirection::UP:
