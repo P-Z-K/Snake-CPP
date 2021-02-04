@@ -28,6 +28,10 @@ void Snake::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
+/* TODO: Need to fix snake's movement bug. 
+	When you press fastly up or down key and 
+	then immediately press right or left key(depends on the current snake's direction), 
+	snake will make illegal move(turn around in place) */
 void Snake::move(SnakeDirection newDir)
 {
 	for (size_t i = m_snakeBody.size() - 1; i > 0; --i)
@@ -38,6 +42,22 @@ void Snake::move(SnakeDirection newDir)
 	std::unique_ptr<sf::Vector2f> offset = dirToVector(newDir);
 
 	m_head->move(*offset);
+}
+
+bool Snake::isOn(const sf::Sprite& other) const
+{
+	return m_head->getGlobalBounds().intersects(other.getGlobalBounds());
+}
+
+bool Snake::isSelfIntersects() const
+{
+	for (size_t i = 1; i < m_snakeBody.size(); ++i)
+	{
+		if (m_head->getGlobalBounds().intersects(m_snakeBody[i].getGlobalBounds()))
+			return true;
+	}
+
+	return false;
 }
 
 void Snake::initPosition()

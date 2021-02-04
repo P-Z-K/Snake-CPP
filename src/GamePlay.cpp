@@ -36,7 +36,21 @@ void GamePlay::update(const sf::Time& deltaTime)
 	// Its a snake speed limiter
 	while (elapsedTime.asSeconds() > m_snakeSpeed)
 	{
+		// Check walls collisions
+		for (auto& wall : m_walls)
+		{
+			if (m_snake.isOn(wall))
+				std::cout << "Snake hits wall!\n";
+		}
+
+		if (m_snake.isSelfIntersects())
+			std::cout << "Snake is self intersecting!\n";
+
 		m_snake.move(m_snakeDir);
+
+
+
+
 		elapsedTime = sf::Time::Zero;
 	}
 

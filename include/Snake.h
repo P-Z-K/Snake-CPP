@@ -28,6 +28,8 @@ public:
 	void init(const sf::Texture& head, const sf::Texture& tail);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void move(SnakeDirection newDir);
+	bool isOn(const sf::Sprite& other) const;
+	bool isSelfIntersects() const;
 
 private:
 	void initPosition();
