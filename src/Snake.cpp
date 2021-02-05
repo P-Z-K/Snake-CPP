@@ -1,9 +1,8 @@
 #include "Snake.h"
 
 Snake::Snake() :
-	m_snakeBody(std::vector<sf::Sprite>(Settings::START_SNAKE_LENGTH)),
-	m_head(m_snakeBody.begin()),
-	m_gridStartPos(Settings::GRID_START_POS.x, Settings::GRID_START_POS.y)
+	m_snakeBody(std::vector<sf::Sprite>(Settings::SNAKE_START_LENGTH)),
+	m_head(m_snakeBody.begin())
 {
 }
 
@@ -68,8 +67,9 @@ const std::vector<sf::Sprite>& Snake::getBody() const
 void Snake::initPosition()
 {
 	using Settings::UNIT;
+	using Settings::SNAKE_START_POS;
 
-	m_head->setPosition(UNIT * m_gridStartPos.x, UNIT * m_gridStartPos.y);
+	m_head->setPosition((float)UNIT * SNAKE_START_POS.x, (float)UNIT * SNAKE_START_POS.y);
 
 	// Snake's body is the straight line on x axis
 	float tailXPos = m_head->getPosition().x - UNIT;
@@ -87,16 +87,16 @@ sf::Vector2f Snake::dirToVector(SnakeDirection dir)
 	switch (dir)
 	{
 	case SnakeDirection::UP:
-		return sf::Vector2f(0.f, -UNIT);
+		return sf::Vector2f(0.f, (float)-UNIT);
 		break;
 	case SnakeDirection::DOWN:
-		return sf::Vector2f(0.f, UNIT);
+		return sf::Vector2f(0.f, (float)UNIT);
 		break;
 	case SnakeDirection::LEFT:
-		return sf::Vector2f(-UNIT, 0.f);
+		return sf::Vector2f((float)-UNIT, 0.f);
 		break;
 	case SnakeDirection::RIGHT:
-		return sf::Vector2f(UNIT, 0.f);
+		return sf::Vector2f((float)UNIT, 0.f);
 		break;
 	default:
 		break;

@@ -23,7 +23,7 @@ void GamePlay::handleInputs()
 		{
 			if (m_event.key.code == sf::Keyboard::Escape)
 				m_context->m_window->close();
-			
+
 			snakeMovementHandler(m_event.key.code);
 		}
 	}
@@ -53,7 +53,7 @@ void GamePlay::update(const sf::Time& deltaTime)
 			// Snake ate apple, thus we spawn another
 			spawnApple();
 		}
-			
+
 
 		m_snake.move(m_snakeDir);
 
@@ -83,8 +83,8 @@ void GamePlay::init()
 		wall.setTexture(m_context->m_assetManager->getTexture(TextureType::WALL));
 	}
 
-	sf::IntRect screenSizes (m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
-	sf::Vector2u wallSizes (m_context->m_assetManager->getTexture(TextureType::WALL).getSize());
+	sf::IntRect screenSizes(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+	sf::Vector2u wallSizes(m_context->m_assetManager->getTexture(TextureType::WALL).getSize());
 
 	// Top wall
 	m_walls[0].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
@@ -98,10 +98,11 @@ void GamePlay::init()
 
 	// Right wall
 	m_walls[3].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
-	m_walls[3].setPosition( (float)screenSizes.width - wallSizes.x, 0);
+	m_walls[3].setPosition((float)screenSizes.width - wallSizes.x, 0);
 
 	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
 
+	// Handle apple
 	m_apple.setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
 	spawnApple();
 }
@@ -117,17 +118,19 @@ void GamePlay::draw()
 		m_context->m_window->draw(wall);
 	}
 
-	m_context->m_window->draw(m_snake);
+
 	m_context->m_window->draw(m_apple);
+
+	m_context->m_window->draw(m_snake);
 
 	m_context->m_window->display();
 }
 
 void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 {
-	SnakeDirection newDir{};
+	SnakeDirection newDir;
 	switch (key)
-	{	
+	{
 	default:
 		newDir = SnakeDirection::RIGHT;
 		break;
@@ -142,7 +145,7 @@ void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 		break;
 	case sf::Keyboard::Right:
 		newDir = SnakeDirection::RIGHT;
-		break;		
+		break;
 	}
 
 	// TODO: it could be better implemented
@@ -153,7 +156,7 @@ void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 		newDir == SnakeDirection::RIGHT && m_snakeDir == SnakeDirection::LEFT
 		)
 		return;
-		
+
 	m_snakeDir = newDir;
 }
 
@@ -161,7 +164,7 @@ void GamePlay::spawnApple()
 {
 	using Settings::UNIT;
 
-	// Divide windows dimensionals to get units per one dimension
+	// Divide windows dimensions to get units per one dimension
 	static int unitsInWidth = Settings::W_WIDTH / (int)UNIT;
 	static int unitsInLength = Settings::W_LENGTH / (int)UNIT;
 
@@ -171,7 +174,7 @@ void GamePlay::spawnApple()
 	static std::uniform_int_distribution<> yPos(1, unitsInLength - 2);
 
 	// Place apple exactly into the grid cell
-	m_apple.setPosition(xPos(m_gen) * UNIT, yPos(m_gen) * UNIT);
+	m_apple.setPosition((float)xPos(m_gen) * UNIT, (float)yPos(m_gen) * UNIT);
 
 	// Check if spawned apple collides with snake body, if so, try to spawn at diffrent position
 	for (const auto& piece : m_snake.getBody())
@@ -181,6 +184,5 @@ void GamePlay::spawnApple()
 			std::cout << "Apple spawned at snake!\n";
 			spawnApple();
 		}
-
 	}
 }
