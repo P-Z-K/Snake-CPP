@@ -167,8 +167,8 @@ void GamePlay::spawnApple()
 
 	// In the first and the last grid's cell we placed walls, 
 	// thus we dont want to spawn apple into walls
-	static std::uniform_int_distribution<> xPos(1, unitsInWidth - 1);
-	static std::uniform_int_distribution<> yPos(1, unitsInLength - 1);
+	static std::uniform_int_distribution<> xPos(1, unitsInWidth - 2);
+	static std::uniform_int_distribution<> yPos(1, unitsInLength - 2);
 
 	// Place apple exactly into the grid cell
 	m_apple.setPosition(xPos(m_gen) * UNIT, yPos(m_gen) * UNIT);
