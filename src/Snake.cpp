@@ -39,9 +39,9 @@ void Snake::move(SnakeDirection newDir)
 		m_snakeBody[i].setPosition(m_snakeBody[i - 1].getPosition());
 	}
 
-	std::unique_ptr<sf::Vector2f> offset = dirToVector(newDir);
+	sf::Vector2f offset = dirToVector(newDir);
 
-	m_head->move(*offset);
+	m_head->move(offset);
 }
 
 bool Snake::isOn(const sf::Sprite& other) const
@@ -60,6 +60,11 @@ bool Snake::isSelfIntersects() const
 	return false;
 }
 
+const std::vector<sf::Sprite>& Snake::getBody() const
+{
+	return m_snakeBody;
+}
+
 void Snake::initPosition()
 {
 	using Settings::UNIT;
@@ -75,23 +80,23 @@ void Snake::initPosition()
 	}
 }
 
-std::unique_ptr<sf::Vector2f> Snake::dirToVector(SnakeDirection dir)
+sf::Vector2f Snake::dirToVector(SnakeDirection dir)
 {
 	using Settings::UNIT;
 
 	switch (dir)
 	{
 	case SnakeDirection::UP:
-		return std::make_unique<sf::Vector2f>(0.f, -UNIT);
+		return sf::Vector2f(0.f, -UNIT);
 		break;
 	case SnakeDirection::DOWN:
-		return std::make_unique<sf::Vector2f>(0.f, UNIT);
+		return sf::Vector2f(0.f, UNIT);
 		break;
 	case SnakeDirection::LEFT:
-		return std::make_unique<sf::Vector2f>(-UNIT, 0.f);
+		return sf::Vector2f(-UNIT, 0.f);
 		break;
 	case SnakeDirection::RIGHT:
-		return std::make_unique<sf::Vector2f>(UNIT, 0.f);
+		return sf::Vector2f(UNIT, 0.f);
 		break;
 	default:
 		break;

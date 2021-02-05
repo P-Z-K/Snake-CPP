@@ -172,5 +172,15 @@ void GamePlay::spawnApple()
 
 	// Place apple exactly into the grid cell
 	m_apple.setPosition(xPos(m_gen) * UNIT, yPos(m_gen) * UNIT);
-	// TODO: Check if spawned apple collides with snake body
+
+	// Check if spawned apple collides with snake body, if so, try to spawn at diffrent position
+	for (const auto& piece : m_snake.getBody())
+	{
+		if (m_apple.getGlobalBounds().intersects(piece.getGlobalBounds()))
+		{
+			std::cout << "Apple spawned at snake!\n";
+			spawnApple();
+		}
+
+	}
 }

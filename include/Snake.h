@@ -30,9 +30,10 @@ public:
 	void move(SnakeDirection newDir);
 	bool isOn(const sf::Sprite& other) const;
 	bool isSelfIntersects() const;
+	const std::vector<sf::Sprite>& getBody() const;
 
 private:
 	void initPosition();
-	std::unique_ptr<sf::Vector2f> dirToVector(SnakeDirection dir);
+	sf::Vector2f dirToVector(SnakeDirection dir);
 };
 
