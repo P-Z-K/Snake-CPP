@@ -10,7 +10,8 @@ enum class TextureType
 	WALL,
 	GRASS,
 	SNAKETAIL,
-	SNAKEHEAD
+	SNAKEHEAD,
+	APPLE
 };
 
 

@@ -16,10 +16,15 @@ private:
 
 	std::array<sf::Sprite, 4> m_walls;
 	sf::Sprite m_grass;
+	sf::Sprite m_apple;
 
 	const float m_snakeSpeed;
 	SnakeDirection m_snakeDir;
 	Snake m_snake;
+
+	// Random numbers
+	std::random_device m_rd;
+	std::mt19937 m_gen;
 
 public:
 	GamePlay(const std::shared_ptr<Context>& context);
@@ -33,6 +38,7 @@ public:
 
 private:
 	void snakeMovementHandler(sf::Keyboard::Key key);
+	void spawnApple();
 
 };
 

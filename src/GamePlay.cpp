@@ -4,9 +4,9 @@ GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_context(context),
 	m_snakeDir(SnakeDirection::RIGHT),
 	m_snakeSpeed(Settings::SNAKE_SPEED),
-	m_event()
+	m_event(),
+	m_gen(m_rd())
 {
-	std::cout << sizeof(sf::Vector2f);
 }
 
 GamePlay::~GamePlay()
@@ -46,6 +46,15 @@ void GamePlay::update(const sf::Time& deltaTime)
 		if (m_snake.isSelfIntersects())
 			std::cout << "Snake is self intersecting!\n";
 
+		if (m_snake.isOn(m_apple))
+		{
+			std::cout << "Snake ate apple!\n";
+
+			// Snake ate apple, thus we spawn another
+			spawnApple();
+		}
+			
+
 		m_snake.move(m_snakeDir);
 
 
@@ -61,8 +70,9 @@ void GamePlay::init()
 {
 	m_context->m_assetManager->loadTexture("Assets/grass.png", TextureType::GRASS, true);
 	m_context->m_assetManager->loadTexture("Assets/wall.png", TextureType::WALL, true);
-	m_context->m_assetManager->loadTexture("assets/tail.png", TextureType::SNAKETAIL);
-	m_context->m_assetManager->loadTexture("assets/head.png", TextureType::SNAKEHEAD);
+	m_context->m_assetManager->loadTexture("Assets/tail.png", TextureType::SNAKETAIL);
+	m_context->m_assetManager->loadTexture("Assets/head.png", TextureType::SNAKEHEAD);
+	m_context->m_assetManager->loadTexture("Assets/apple.png", TextureType::APPLE);
 
 	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
 	// Make grass texture to fill whole screen
@@ -91,6 +101,9 @@ void GamePlay::init()
 	m_walls[3].setPosition( (float)screenSizes.width - wallSizes.x, 0);
 
 	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
+
+	m_apple.setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
+	spawnApple();
 }
 
 void GamePlay::draw()
@@ -105,6 +118,7 @@ void GamePlay::draw()
 	}
 
 	m_context->m_window->draw(m_snake);
+	m_context->m_window->draw(m_apple);
 
 	m_context->m_window->display();
 }
@@ -141,4 +155,22 @@ void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 		return;
 		
 	m_snakeDir = newDir;
+}
+
+void GamePlay::spawnApple()
+{
+	using Settings::UNIT;
+
+	// Divide windows dimensionals to get units per one dimension
+	static int unitsInWidth = Settings::W_WIDTH / (int)UNIT;
+	static int unitsInLength = Settings::W_LENGTH / (int)UNIT;
+
+	// In the first and the last grid's cell we placed walls, 
+	// thus we dont want to spawn apple into walls
+	static std::uniform_int_distribution<> xPos(1, unitsInWidth - 1);
+	static std::uniform_int_distribution<> yPos(1, unitsInLength - 1);
+
+	// Place apple exactly into the grid cell
+	m_apple.setPosition(xPos(m_gen) * UNIT, yPos(m_gen) * UNIT);
+	// TODO: Check if spawned apple collides with snake body
 }

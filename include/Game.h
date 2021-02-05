@@ -3,6 +3,7 @@
 #include "SFML/Window.hpp"
 
 #include <memory>
+#include <random>
 
 #include "AssetManager.h"
 #include "SceneManager.h"

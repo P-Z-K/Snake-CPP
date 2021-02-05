@@ -62,36 +62,36 @@ bool Snake::isSelfIntersects() const
 
 void Snake::initPosition()
 {
-	using Settings::CELL_SIZE;
+	using Settings::UNIT;
 
-	m_head->setPosition(CELL_SIZE * m_gridStartPos.x, CELL_SIZE * m_gridStartPos.y);
+	m_head->setPosition(UNIT * m_gridStartPos.x, UNIT * m_gridStartPos.y);
 
 	// Snake's body is the straight line on x axis
-	float tailXPos = m_head->getPosition().x - CELL_SIZE;
+	float tailXPos = m_head->getPosition().x - UNIT;
 	for (size_t i = 1; i < m_snakeBody.size(); ++i)
 	{
 		m_snakeBody[i].setPosition(tailXPos, m_head->getPosition().y);
-		tailXPos -= CELL_SIZE;
+		tailXPos -= UNIT;
 	}
 }
 
 std::unique_ptr<sf::Vector2f> Snake::dirToVector(SnakeDirection dir)
 {
-	using Settings::CELL_SIZE;
+	using Settings::UNIT;
 
 	switch (dir)
 	{
 	case SnakeDirection::UP:
-		return std::make_unique<sf::Vector2f>(0.f, -CELL_SIZE);
+		return std::make_unique<sf::Vector2f>(0.f, -UNIT);
 		break;
 	case SnakeDirection::DOWN:
-		return std::make_unique<sf::Vector2f>(0.f, CELL_SIZE);
+		return std::make_unique<sf::Vector2f>(0.f, UNIT);
 		break;
 	case SnakeDirection::LEFT:
-		return std::make_unique<sf::Vector2f>(-CELL_SIZE, 0.f);
+		return std::make_unique<sf::Vector2f>(-UNIT, 0.f);
 		break;
 	case SnakeDirection::RIGHT:
-		return std::make_unique<sf::Vector2f>(CELL_SIZE, 0.f);
+		return std::make_unique<sf::Vector2f>(UNIT, 0.f);
 		break;
 	default:
 		break;
