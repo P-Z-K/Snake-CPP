@@ -7,6 +7,7 @@ GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_event(),
 	m_gen(m_rd())
 {
+
 }
 
 GamePlay::~GamePlay()
@@ -118,10 +119,11 @@ void GamePlay::draw()
 		m_context->m_window->draw(wall);
 	}
 
-
 	m_context->m_window->draw(m_apple);
 
 	m_context->m_window->draw(m_snake);
+
+
 
 	m_context->m_window->display();
 }
