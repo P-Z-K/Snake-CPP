@@ -24,6 +24,8 @@ void GamePlay::handleInputs()
 		{
 			if (m_event.key.code == sf::Keyboard::Escape)
 				m_context->m_window->close();
+			else if (m_event.key.code == sf::Keyboard::Space)
+				m_context->m_sceneManager->push(std::make_unique<PauseMenu>(m_context));
 
 			snakeMovementHandler(m_event.key.code);
 		}
@@ -134,7 +136,7 @@ void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 	switch (key)
 	{
 	default:
-		newDir = SnakeDirection::RIGHT;
+		newDir = m_snakeDir;
 		break;
 	case sf::Keyboard::Up:
 		newDir = SnakeDirection::UP;

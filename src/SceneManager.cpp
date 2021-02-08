@@ -30,13 +30,14 @@ void SceneManager::processSceneChange()
     if (m_shouldRemove && !m_sceneStack.empty())
     {
         m_sceneStack.pop();
+
         m_shouldRemove = false;
     }
 
     if (m_shouldAdd)
     {
         if (m_shouldReplace && !m_sceneStack.empty())
-        {
+        {          
             m_sceneStack.pop();
             m_shouldReplace = false;
         }
