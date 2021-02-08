@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Snake.h"
 #include "PauseMenu.h"
+#include "GameOverMenu.h"
 
 class GamePlay : public Scene
 {

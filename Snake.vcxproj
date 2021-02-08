@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameOverMenu.cpp" />
     <ClCompile Include="src\PauseMenu.cpp" />
     <ClCompile Include="src\Snake.cpp" />
     <ClCompile Include="src\GamePlay.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GameOverMenu.h" />
     <ClInclude Include="include\GamePlay.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\AssetManager.h" />

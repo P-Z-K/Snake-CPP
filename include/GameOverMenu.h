@@ -1,29 +1,29 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include <memory>
 
-#include <SFML\System\Time.hpp>
 
 #include "Scene.h"
-#include "GamePlay.h"
 #include "Game.h"
+#include "GamePlay.h"
 
-class MainMenu : public Scene
+class GameOverMenu : public Scene
 {
 private:
 	std::shared_ptr<Context> m_context;
 	sf::Event m_event;
 
 	sf::Text m_title;
-	sf::Text m_playButton;
+	sf::Text m_playAgainButton;
 	sf::Text m_exitButton;
 
-	bool m_isPlayButtonFocused;
-	bool m_isExitButtonFocused;
+	bool m_isPlayAgainButtonActive;
+	bool m_isExitButtonActive;
 
 public:
-	MainMenu(std::shared_ptr<Context>& context);
-	~MainMenu();
+	GameOverMenu(const std::shared_ptr<Context>& context);
 
 public:
 	void handleInputs() override;

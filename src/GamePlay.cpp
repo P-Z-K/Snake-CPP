@@ -43,16 +43,23 @@ void GamePlay::update(const sf::Time& deltaTime)
 		for (auto& wall : m_walls)
 		{
 			if (m_snake.isOn(wall))
+			{
 				std::cout << "Snake hits wall!\n";
+				m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context), true);
+			}
 		}
 
 		if (m_snake.isSelfIntersects())
+		{
 			std::cout << "Snake is self intersecting!\n";
+			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context), true);
+		}
 
 		if (m_snake.isOn(m_apple))
 		{
 			std::cout << "Snake ate apple!\n";
 			m_snake.grow();
+
 			// Snake ate apple, thus we spawn another
 			spawnApple();
 		}

@@ -8,8 +8,8 @@ struct Position
 
 namespace Settings
 {
-	inline constexpr size_t W_LENGTH = 480;
-	inline constexpr size_t W_WIDTH = 640;
+	inline constexpr size_t W_LENGTH = 352;
+	inline constexpr size_t W_WIDTH = 480;
 	inline constexpr int UNIT = 16;
 	inline constexpr size_t SNAKE_START_LENGTH = 3;
 	inline constexpr Position SNAKE_START_POS { 6, 6 };
