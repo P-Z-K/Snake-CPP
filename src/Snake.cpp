@@ -1,9 +1,10 @@
 #include "Snake.h"
 
 Snake::Snake() :
-	m_snakeBody(std::vector<sf::Sprite>(Settings::SNAKE_START_LENGTH)),
-	m_head(m_snakeBody.begin())
+	m_snakeBody(std::vector<sf::Sprite>(Settings::SNAKE_START_LENGTH))
 {
+	m_snakeBody.reserve(20); // TODO: Need to create custom allocator
+	m_head = m_snakeBody.begin();
 }
 
 void Snake::init(const sf::Texture& head, const sf::Texture& tail)
@@ -41,6 +42,21 @@ void Snake::move(SnakeDirection newDir)
 	sf::Vector2f offset = dirToVector(newDir);
 
 	m_head->move(offset);
+}
+
+void Snake::grow()
+{
+	size_t oldCapacity = m_snakeBody.capacity();
+
+	// Add one piece of snake's body with the tail texture
+	m_snakeBody.emplace_back(*m_snakeBody[1].getTexture());
+
+	// Vector reallocated memory, so we give iterator new address 
+	if (m_snakeBody.capacity() > oldCapacity)
+	{
+		m_head = m_snakeBody.begin();
+		std::cout << "Vector reallocated memory\n";
+	}
 }
 
 bool Snake::isOn(const sf::Sprite& other) const

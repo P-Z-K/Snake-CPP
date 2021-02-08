@@ -28,10 +28,12 @@ void PauseMenu::init()
 {
 	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 
+	// Pause title
 	m_pauseText.setFont(font);
 	m_pauseText.setString("Paused");
 	m_pauseText.setCharacterSize(Settings::PAUSE_TITLE_SIZE);
-	m_pauseText.setFillColor(sf::Color::Black);
+	m_pauseText.setFillColor(sf::Color::White);
+	m_pauseText.setLetterSpacing(1.5f);
 
 	// Set origin on the middle
 	m_pauseText.setOrigin(m_pauseText.getGlobalBounds().width / 2, m_pauseText.getGlobalBounds().height / 2);
@@ -42,6 +44,7 @@ void PauseMenu::init()
 
 void PauseMenu::draw()
 {
+	// we dont use clear method there, as we dont want to clear screen with our gameplay
 	m_context->m_window->draw(m_pauseText);
 	m_context->m_window->display();
 }

@@ -52,7 +52,7 @@ void GamePlay::update(const sf::Time& deltaTime)
 		if (m_snake.isOn(m_apple))
 		{
 			std::cout << "Snake ate apple!\n";
-
+			m_snake.grow();
 			// Snake ate apple, thus we spawn another
 			spawnApple();
 		}

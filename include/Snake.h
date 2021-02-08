@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <vector>
+#include <iostream>
 
 #include "Settings.h"
 
@@ -24,12 +25,15 @@ public:
 	Snake();
 
 public:
+	const std::vector<sf::Sprite>& getBody() const;
+
+public:
 	void init(const sf::Texture& head, const sf::Texture& tail);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void move(SnakeDirection newDir);
+	void grow();
 	bool isOn(const sf::Sprite& other) const;
 	bool isSelfIntersects() const;
-	const std::vector<sf::Sprite>& getBody() const;
 
 private:
 	void initPosition();
