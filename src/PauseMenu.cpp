@@ -30,7 +30,7 @@ void PauseMenu::init()
 
 	m_pauseText.setFont(font);
 	m_pauseText.setString("Paused");
-	m_pauseText.setCharacterSize(35);
+	m_pauseText.setCharacterSize(Settings::PAUSE_TITLE_SIZE);
 	m_pauseText.setFillColor(sf::Color::Black);
 
 	// Set origin on the middle

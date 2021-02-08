@@ -56,7 +56,7 @@ void MainMenu::init()
 	// Title
 	m_title.setFont(font);
 	m_title.setString("Snake");
-	m_title.setCharacterSize(45);
+	m_title.setCharacterSize(Settings::SNAKE_TITLE_SIZE);
 	m_title.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
@@ -69,7 +69,7 @@ void MainMenu::init()
 	// Play button
 	m_playButton.setFont(font);
 	m_playButton.setString("Play");
-	m_playButton.setCharacterSize(25);
+	m_playButton.setCharacterSize(Settings::BUTTON_TEXT_SIZE);
 	m_playButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
@@ -82,7 +82,7 @@ void MainMenu::init()
 	// Exit button
 	m_exitButton.setFont(font);
 	m_exitButton.setString("Exit");
-	m_exitButton.setCharacterSize(25);
+	m_exitButton.setCharacterSize(Settings::BUTTON_TEXT_SIZE);
 	m_exitButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
