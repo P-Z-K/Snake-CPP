@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 
 #include <iostream>
+#include <memory>
 #include <map>
 
 enum class TextureType
@@ -25,7 +26,6 @@ class AssetManager
 {
 public:
 	AssetManager();
-	~AssetManager();
 
 private:
 	std::map<TextureType, std::unique_ptr<sf::Texture>> m_textures;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include <memory>
 #include <array>
 
@@ -16,10 +18,15 @@ private:
 	sf::Event m_event;
 	std::shared_ptr<Context> m_context;
 
+	// Texts
+	sf::Text m_scoreText;
+
+	// Terrain
 	std::array<sf::Sprite, 4> m_walls;
 	sf::Sprite m_grass;
 	sf::Sprite m_apple;
 
+	// Snake
 	const float m_snakeSpeed;
 	SnakeDirection m_snakeDir;
 	Snake m_snake;
@@ -30,7 +37,6 @@ private:
 
 public:
 	GamePlay(const std::shared_ptr<Context>& context);
-	~GamePlay();
 
 public:
 	void handleInputs() override;
@@ -40,7 +46,7 @@ public:
 
 private:
 	void snakeMovementHandler(sf::Keyboard::Key key);
-	void spawnApple();
+	void spawnFruit();
 
 };
 

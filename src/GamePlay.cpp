@@ -10,10 +10,6 @@ GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 
 }
 
-GamePlay::~GamePlay()
-{
-}
-
 void GamePlay::handleInputs()
 {
 	while (m_context->m_window->pollEvent(m_event))
@@ -61,7 +57,7 @@ void GamePlay::update(const sf::Time& deltaTime)
 			m_snake.grow();
 
 			// Snake ate apple, thus we spawn another
-			spawnApple();
+			spawnFruit();
 		}
 
 
@@ -112,9 +108,9 @@ void GamePlay::init()
 
 	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
 
-	// Handle apple
+	// Handle fruit
 	m_apple.setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
-	spawnApple();
+	spawnFruit();
 }
 
 void GamePlay::draw()
@@ -171,7 +167,7 @@ void GamePlay::snakeMovementHandler(sf::Keyboard::Key key)
 	m_snakeDir = newDir;
 }
 
-void GamePlay::spawnApple()
+void GamePlay::spawnFruit()
 {
 	using Settings::UNIT;
 
@@ -184,16 +180,16 @@ void GamePlay::spawnApple()
 	static std::uniform_int_distribution<> xPos(1, unitsInWidth - 2);
 	static std::uniform_int_distribution<> yPos(1, unitsInLength - 2);
 
-	// Place apple exactly into the grid cell
+	// Place fruit exactly into the grid cell
 	m_apple.setPosition((float)xPos(m_gen) * UNIT, (float)yPos(m_gen) * UNIT);
 
-	// Check if spawned apple collides with snake body, if so, try to spawn at diffrent position
+	// Check if spawned fruit collides with snake body, if so, try to spawn at diffrent position
 	for (const auto& piece : m_snake.getBody())
 	{
 		if (m_apple.getGlobalBounds().intersects(piece.getGlobalBounds()))
 		{
-			std::cout << "Apple spawned at snake!\n";
-			spawnApple();
+			std::cout << "Fruit spawned at snake!\n";
+			spawnFruit();
 		}
 	}
 }

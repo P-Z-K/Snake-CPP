@@ -7,10 +7,6 @@ SceneManager::SceneManager() :
 {
 }
 
-SceneManager::~SceneManager()
-{
-}
-
 void SceneManager::push(std::unique_ptr<Scene> scene, bool wantReplace)
 {
     m_shouldAdd = true;

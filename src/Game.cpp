@@ -14,10 +14,6 @@ Game::Game() :
 	m_context->m_window->setFramerateLimit(250);
 }
 
-Game::~Game()
-{
-}
-
 void Game::run()
 {
 	sf::Clock clock;

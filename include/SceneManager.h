@@ -17,14 +17,13 @@ private:
 
 public:
 	SceneManager();
-	~SceneManager();
+
+public:
+	std::unique_ptr<Scene>& getCurrent();
 
 public:
 	void push(std::unique_ptr<Scene> scene, bool wantReplace = false);
 	void pop();
 	void processSceneChange();
-
-public:
-	std::unique_ptr<Scene>& getCurrent();
 };
 

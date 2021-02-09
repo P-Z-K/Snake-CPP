@@ -4,12 +4,6 @@ AssetManager::AssetManager() :
 	m_textures(),
 	m_fonts()
 {
-
-}
-
-AssetManager::~AssetManager()
-{
-
 }
 
 void AssetManager::loadTexture(const std::string& filePath, TextureType type, bool isRepeated)

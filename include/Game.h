@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
 
 #include <memory>
 #include <random>
@@ -32,8 +32,8 @@ private:
 
 public:
 	Game();
-	~Game();
 
+public:
 	void run();
 };
 

@@ -11,7 +11,7 @@ void Snake::init(const sf::Texture& head, const sf::Texture& tail)
 {
 	m_head->setTexture(head);
 
-	// First element of the vector is head, thus we start from 1 index
+	// First element of the vector is head, thus we start from index 1
 	for (size_t i = 1; i < m_snakeBody.size(); ++i)
 	{
 		m_snakeBody[i].setTexture(tail);

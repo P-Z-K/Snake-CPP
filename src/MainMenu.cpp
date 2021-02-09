@@ -1,14 +1,10 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(std::shared_ptr<Context>& context) :
+MainMenu::MainMenu(const std::shared_ptr<Context>& context) :
 	m_context(context),
 	m_isPlayButtonFocused(true),
 	m_isExitButtonFocused(false),
 	m_event()
-{
-}
-
-MainMenu::~MainMenu()
 {
 }
 
