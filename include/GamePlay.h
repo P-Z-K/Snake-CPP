@@ -30,6 +30,7 @@ private:
 	const float m_snakeSpeed;
 	SnakeDirection m_snakeDir;
 	Snake m_snake;
+	int m_playerScore;
 
 	// Random numbers
 	std::random_device m_rd;

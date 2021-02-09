@@ -5,7 +5,8 @@ GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_snakeDir(SnakeDirection::RIGHT),
 	m_snakeSpeed(Settings::SNAKE_SPEED),
 	m_event(),
-	m_gen(m_rd())
+	m_gen(m_rd()),
+	m_playerScore(0)
 {
 
 }
@@ -53,23 +54,21 @@ void GamePlay::update(const sf::Time& deltaTime)
 
 		if (m_snake.isOn(m_apple))
 		{
-			std::cout << "Snake ate apple!\n";
+			std::cout << "Snake ate fruit!\n";
+			++m_playerScore;
 			m_snake.grow();
 
-			// Snake ate apple, thus we spawn another
+			// Snake ate fruit, thus we spawn another
 			spawnFruit();
 		}
 
+		// Update texts
+		m_scoreText.setString(std::to_string(m_playerScore));
 
 		m_snake.move(m_snakeDir);
 
-
-
-
 		elapsedTime = sf::Time::Zero;
 	}
-
-
 }
 
 void GamePlay::init()
@@ -111,6 +110,13 @@ void GamePlay::init()
 	// Handle fruit
 	m_apple.setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
 	spawnFruit();
+
+	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+
+	// Score text
+	m_scoreText.setFont(font);
+	m_scoreText.setString(std::to_string(m_playerScore));
+	m_scoreText.setFillColor(sf::Color::Yellow);
 }
 
 void GamePlay::draw()
@@ -128,7 +134,7 @@ void GamePlay::draw()
 
 	m_context->m_window->draw(m_snake);
 
-
+	m_context->m_window->draw(m_scoreText);
 
 	m_context->m_window->display();
 }
