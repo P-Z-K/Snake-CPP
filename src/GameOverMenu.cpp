@@ -4,7 +4,17 @@ GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context) :
 	m_context(context),
 	m_isPlayAgainButtonActive(true),
 	m_isExitButtonActive(false),
-	m_event()
+	m_event(),
+	m_playerScore(-1)
+{
+}
+
+GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context, int playerScore) :
+	m_context(context),
+	m_isPlayAgainButtonActive(true),
+	m_isExitButtonActive(false),
+	m_event(),
+	m_playerScore(playerScore)
 {
 }
 
@@ -55,7 +65,8 @@ void GameOverMenu::init()
 	m_title.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
-	m_title.setOrigin(m_title.getGlobalBounds().width / 2, m_title.getGlobalBounds().height / 2);
+	m_title.setOrigin(m_title.getGlobalBounds().width / 2,
+		m_title.getGlobalBounds().height / 2);
 	// Center horizontally
 	m_title.setPosition(Settings::W_WIDTH / 2, 50.f);
 
@@ -68,10 +79,10 @@ void GameOverMenu::init()
 	m_playAgainButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
-	m_playAgainButton.setOrigin(m_playAgainButton.getGlobalBounds().width / 2, 
-								m_playAgainButton.getGlobalBounds().height / 2);
+	m_playAgainButton.setOrigin(m_playAgainButton.getGlobalBounds().width / 2,
+		m_playAgainButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_playAgainButton.setPosition(Settings::W_WIDTH / 2, 165.f);
+	m_playAgainButton.setPosition(Settings::W_WIDTH / 2, 175.f);
 
 	// =================================================
 
@@ -82,9 +93,24 @@ void GameOverMenu::init()
 	m_exitButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
-	m_exitButton.setOrigin(m_exitButton.getGlobalBounds().width / 2, m_exitButton.getGlobalBounds().height / 2);
+	m_exitButton.setOrigin(m_exitButton.getGlobalBounds().width / 2,
+		m_exitButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_exitButton.setPosition(Settings::W_WIDTH / 2, 220.f);
+	m_exitButton.setPosition(Settings::W_WIDTH / 2, 230.f);
+
+	// =================================================
+
+	// Player score text
+	m_playerScoreText = std::make_unique<sfe::RichText>(font);
+	m_playerScoreText->setCharacterSize(25);
+	*m_playerScoreText << sf::Color::White << "Your score: "
+		<< sf::Color::Yellow << std::to_string(m_playerScore);
+
+	// Set origin on the middle
+	m_playerScoreText->setOrigin(m_playerScoreText->getGlobalBounds().width / 2,
+		m_playerScoreText->getGlobalBounds().height / 2);
+	// Center horizontally
+	m_playerScoreText->setPosition(Settings::W_WIDTH / 2, 115.f);
 
 	// =================================================
 }
@@ -94,6 +120,7 @@ void GameOverMenu::draw()
 	m_context->m_window->clear();
 
 	m_context->m_window->draw(m_title);
+	m_context->m_window->draw(*m_playerScoreText);
 	m_context->m_window->draw(m_playAgainButton);
 	m_context->m_window->draw(m_exitButton);
 

@@ -12,7 +12,10 @@ enum class TextureType
 	GRASS,
 	SNAKETAIL,
 	SNAKEHEAD,
-	APPLE
+	APPLE,
+	CHERRY,
+	WATERMELON,
+	KIWI
 };
 
 

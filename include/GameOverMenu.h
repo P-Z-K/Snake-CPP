@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <RichText.hpp>
 
 #include <memory>
 
@@ -19,6 +20,10 @@ private:
 	sf::Text m_title;
 	sf::Text m_playAgainButton;
 	sf::Text m_exitButton;
+	std::unique_ptr<sfe::RichText> m_playerScoreText;
+
+	// Player
+	int m_playerScore;
 
 	// Menu logic
 	bool m_isPlayAgainButtonActive;
@@ -26,6 +31,7 @@ private:
 
 public:
 	GameOverMenu(const std::shared_ptr<Context>& context);
+	GameOverMenu(const std::shared_ptr<Context>& context, int playerScore);
 
 public:
 	void handleInputs() override;

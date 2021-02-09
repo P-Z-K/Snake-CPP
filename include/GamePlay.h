@@ -24,7 +24,8 @@ private:
 	// Terrain
 	std::array<sf::Sprite, 4> m_walls;
 	sf::Sprite m_grass;
-	sf::Sprite m_apple;
+	std::array<sf::Sprite, 4> m_fruits;
+	sf::Sprite m_currentFruit;
 
 	// Snake
 	const float m_snakeSpeed;

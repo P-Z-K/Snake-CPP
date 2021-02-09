@@ -42,17 +42,17 @@ void GamePlay::update(const sf::Time& deltaTime)
 			if (m_snake.isOn(wall))
 			{
 				std::cout << "Snake hits wall!\n";
-				m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context), true);
+				m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
 			}
 		}
 
 		if (m_snake.isSelfIntersects())
 		{
 			std::cout << "Snake is self intersecting!\n";
-			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context), true);
+			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
 		}
 
-		if (m_snake.isOn(m_apple))
+		if (m_snake.isOn(m_currentFruit))
 		{
 			std::cout << "Snake ate fruit!\n";
 			++m_playerScore;
@@ -75,9 +75,16 @@ void GamePlay::init()
 {
 	m_context->m_assetManager->loadTexture("Assets/grass.png", TextureType::GRASS, true);
 	m_context->m_assetManager->loadTexture("Assets/wall.png", TextureType::WALL, true);
+
 	m_context->m_assetManager->loadTexture("Assets/tail.png", TextureType::SNAKETAIL);
 	m_context->m_assetManager->loadTexture("Assets/head.png", TextureType::SNAKEHEAD);
-	m_context->m_assetManager->loadTexture("Assets/apple.png", TextureType::APPLE);
+
+
+	m_context->m_assetManager->loadTexture("Assets/Fruits/apple.png", TextureType::APPLE);
+	m_context->m_assetManager->loadTexture("Assets/Fruits/cherry.png", TextureType::CHERRY);
+	m_context->m_assetManager->loadTexture("Assets/Fruits/watermelon.png", TextureType::WATERMELON);
+	m_context->m_assetManager->loadTexture("Assets/Fruits/kiwi.png", TextureType::KIWI);
+
 
 	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
 	// Make grass texture to fill whole screen
@@ -107,8 +114,11 @@ void GamePlay::init()
 
 	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
 
-	// Handle fruit
-	m_apple.setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
+	// Handle fruits
+	m_fruits[0].setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
+	m_fruits[1].setTexture(m_context->m_assetManager->getTexture(TextureType::CHERRY));
+	m_fruits[2].setTexture(m_context->m_assetManager->getTexture(TextureType::WATERMELON));
+	m_fruits[3].setTexture(m_context->m_assetManager->getTexture(TextureType::KIWI));
 	spawnFruit();
 
 	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
@@ -130,7 +140,7 @@ void GamePlay::draw()
 		m_context->m_window->draw(wall);
 	}
 
-	m_context->m_window->draw(m_apple);
+	m_context->m_window->draw(m_currentFruit);
 
 	m_context->m_window->draw(m_snake);
 
@@ -186,13 +196,17 @@ void GamePlay::spawnFruit()
 	static std::uniform_int_distribution<> xPos(1, unitsInWidth - 2);
 	static std::uniform_int_distribution<> yPos(1, unitsInLength - 2);
 
+	std::uniform_int_distribution<> fruitIndex(0, m_fruits.size() - 1);
+
+	m_currentFruit = m_fruits[fruitIndex(m_gen)];
+
 	// Place fruit exactly into the grid cell
-	m_apple.setPosition((float)xPos(m_gen) * UNIT, (float)yPos(m_gen) * UNIT);
+	m_currentFruit.setPosition((float)xPos(m_gen) * UNIT, (float)yPos(m_gen) * UNIT);
 
 	// Check if spawned fruit collides with snake body, if so, try to spawn at diffrent position
 	for (const auto& piece : m_snake.getBody())
 	{
-		if (m_apple.getGlobalBounds().intersects(piece.getGlobalBounds()))
+		if (m_currentFruit.getGlobalBounds().intersects(piece.getGlobalBounds()))
 		{
 			std::cout << "Fruit spawned at snake!\n";
 			spawnFruit();

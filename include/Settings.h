@@ -13,7 +13,7 @@ namespace Settings
 	inline constexpr int UNIT = 16;
 	inline constexpr size_t SNAKE_START_LENGTH = 3;
 	inline constexpr Position SNAKE_START_POS { 6, 6 };
-	inline constexpr float SNAKE_SPEED = 0.15f;
+	inline constexpr float SNAKE_SPEED = 0.12f;
 
 	inline constexpr size_t SNAKE_TITLE_SIZE = 45;
 	inline constexpr size_t BUTTON_TEXT_SIZE = 25;
