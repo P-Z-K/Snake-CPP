@@ -33,7 +33,7 @@ void GameOverMenu::handleInputs()
 			}
 			else if (m_event.key.code == sf::Keyboard::Enter)
 			{
-				sceneChanger();
+				tryChangeScene();
 			}
 		}
 
@@ -73,7 +73,7 @@ void GameOverMenu::draw()
 	m_context->m_window->display();
 }
 
-void GameOverMenu::sceneChanger()
+void GameOverMenu::tryChangeScene()
 {
 	if (m_isPlayAgainButtonActive)
 		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);

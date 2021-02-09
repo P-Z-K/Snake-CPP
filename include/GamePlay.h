@@ -47,7 +47,7 @@ public:
 	void draw() override;
 
 private:
-	void snakeMovementHandler(sf::Keyboard::Key key);
+	void handleSnakeMovement(sf::Keyboard::Key key);
 	void spawnFruit();
 
 	void initTerrain();

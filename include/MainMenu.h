@@ -33,7 +33,10 @@ public:
 	void draw() override;
 
 private:
-	void sceneChanger();
+	void tryChangeScene();
+
+	void initTitle();
+	void initButtons();
 
 };
 

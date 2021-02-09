@@ -23,7 +23,7 @@ void MainMenu::handleInputs()
 			}
 			else if (m_event.key.code == sf::Keyboard::Enter)
 			{
-				sceneChanger();
+				tryChangeScene();
 			}
 		}
 	}
@@ -47,6 +47,31 @@ void MainMenu::init()
 {
 	m_context->m_assetManager->loadFont("Assets/PottaOne-Regular.ttf", FontType::PRIMARYFONT);
 
+	initTitle();
+	initButtons();
+}
+
+void MainMenu::draw()
+{
+	m_context->m_window->clear();
+
+	m_context->m_window->draw(m_title);
+	m_context->m_window->draw(m_playButton);
+	m_context->m_window->draw(m_exitButton);
+
+	m_context->m_window->display();
+}
+
+void MainMenu::tryChangeScene()
+{
+	if (m_isExitButtonFocused)
+		m_context->m_window->close();
+	else if (m_isPlayButtonFocused)
+		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
+}
+
+void MainMenu::initTitle()
+{
 	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 
 	// Title
@@ -61,6 +86,11 @@ void MainMenu::init()
 	m_title.setPosition(Settings::W_WIDTH / 2, 50.f);
 
 	// ================================
+}
+
+void MainMenu::initButtons()
+{
+	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 
 	// Play button
 	m_playButton.setFont(font);
@@ -87,25 +117,4 @@ void MainMenu::init()
 	m_exitButton.setPosition(Settings::W_WIDTH / 2, 220.f);
 
 	// ================================
-}
-
-void MainMenu::draw()
-{
-	m_context->m_window->clear();
-
-	m_context->m_window->draw(m_title);
-	m_context->m_window->draw(m_playButton);
-	m_context->m_window->draw(m_exitButton);
-
-	m_context->m_window->display();
-}
-
-void MainMenu::sceneChanger()
-{
-	if (m_isExitButtonFocused)
-		m_context->m_window->close();
-
-	if (m_isPlayButtonFocused)
-		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
-
 }
