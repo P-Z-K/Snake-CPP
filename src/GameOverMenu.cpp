@@ -56,6 +56,33 @@ void GameOverMenu::update(const sf::Time& deltaTime)
 
 void GameOverMenu::init()
 {
+	initTitle();
+	initButtons();
+	initScoreInfo();
+}
+
+void GameOverMenu::draw()
+{
+	m_context->m_window->clear();
+
+	m_context->m_window->draw(m_title);
+	m_context->m_window->draw(*m_playerScoreText);
+	m_context->m_window->draw(m_playAgainButton);
+	m_context->m_window->draw(m_exitButton);
+
+	m_context->m_window->display();
+}
+
+void GameOverMenu::sceneChanger()
+{
+	if (m_isPlayAgainButtonActive)
+		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
+	else if (m_isExitButtonActive)
+		m_context->m_window->close();
+}
+
+void GameOverMenu::initTitle()
+{
 	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 
 	// Title text
@@ -71,6 +98,11 @@ void GameOverMenu::init()
 	m_title.setPosition(Settings::W_WIDTH / 2, 50.f);
 
 	// =================================================
+}
+
+void GameOverMenu::initButtons()
+{
+	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 
 	// Play again button text
 	m_playAgainButton.setFont(font);
@@ -99,7 +131,11 @@ void GameOverMenu::init()
 	m_exitButton.setPosition(Settings::W_WIDTH / 2, 230.f);
 
 	// =================================================
+}
 
+void GameOverMenu::initScoreInfo()
+{
+	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
 	// Player score text
 	m_playerScoreText = std::make_unique<sfe::RichText>(font);
 	m_playerScoreText->setCharacterSize(25);
@@ -113,24 +149,4 @@ void GameOverMenu::init()
 	m_playerScoreText->setPosition(Settings::W_WIDTH / 2, 115.f);
 
 	// =================================================
-}
-
-void GameOverMenu::draw()
-{
-	m_context->m_window->clear();
-
-	m_context->m_window->draw(m_title);
-	m_context->m_window->draw(*m_playerScoreText);
-	m_context->m_window->draw(m_playAgainButton);
-	m_context->m_window->draw(m_exitButton);
-
-	m_context->m_window->display();
-}
-
-void GameOverMenu::sceneChanger()
-{
-	if (m_isPlayAgainButtonActive)
-		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
-	else if (m_isExitButtonActive)
-		m_context->m_window->close();
 }

@@ -42,5 +42,9 @@ public:
 private:
 	void sceneChanger();
 
+	void initTitle();
+	void initButtons();
+	void initScoreInfo();
+
 };
 
