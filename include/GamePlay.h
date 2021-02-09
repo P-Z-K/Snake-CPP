@@ -50,5 +50,10 @@ private:
 	void snakeMovementHandler(sf::Keyboard::Key key);
 	void spawnFruit();
 
+	void initTerrain();
+	void initTexts();
+	void initSnake();
+	void initFruits();
+
 };
 

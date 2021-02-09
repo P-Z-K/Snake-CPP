@@ -86,47 +86,10 @@ void GamePlay::init()
 	m_context->m_assetManager->loadTexture("Assets/Fruits/kiwi.png", TextureType::KIWI);
 
 
-	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
-	// Make grass texture to fill whole screen
-	m_grass.setTextureRect(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
-
-	for (auto& wall : m_walls)
-	{
-		wall.setTexture(m_context->m_assetManager->getTexture(TextureType::WALL));
-	}
-
-	sf::IntRect screenSizes(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
-	sf::Vector2u wallSizes(m_context->m_assetManager->getTexture(TextureType::WALL).getSize());
-
-	// Top wall
-	m_walls[0].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
-
-	// Left wall
-	m_walls[1].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
-
-	// Bottom wall
-	m_walls[2].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
-	m_walls[2].setPosition(0, (float)screenSizes.height - wallSizes.y);
-
-	// Right wall
-	m_walls[3].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
-	m_walls[3].setPosition((float)screenSizes.width - wallSizes.x, 0);
-
-	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
-
-	// Handle fruits
-	m_fruits[0].setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
-	m_fruits[1].setTexture(m_context->m_assetManager->getTexture(TextureType::CHERRY));
-	m_fruits[2].setTexture(m_context->m_assetManager->getTexture(TextureType::WATERMELON));
-	m_fruits[3].setTexture(m_context->m_assetManager->getTexture(TextureType::KIWI));
-	spawnFruit();
-
-	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
-
-	// Score text
-	m_scoreText.setFont(font);
-	m_scoreText.setString(std::to_string(m_playerScore));
-	m_scoreText.setFillColor(sf::Color::Yellow);
+	initTerrain();
+	initSnake();
+	initFruits();
+	initTexts();
 }
 
 void GamePlay::draw()
@@ -212,4 +175,58 @@ void GamePlay::spawnFruit()
 			spawnFruit();
 		}
 	}
+}
+
+void GamePlay::initTerrain()
+{
+	m_grass.setTexture(m_context->m_assetManager->getTexture(TextureType::GRASS), true);
+	// Make grass texture to fill whole screen
+	m_grass.setTextureRect(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+
+	for (auto& wall : m_walls)
+	{
+		wall.setTexture(m_context->m_assetManager->getTexture(TextureType::WALL));
+	}
+
+	sf::IntRect screenSizes(m_context->m_window->getViewport(m_context->m_window->getDefaultView()));
+	sf::Vector2u wallSizes(m_context->m_assetManager->getTexture(TextureType::WALL).getSize());
+
+	// Top wall
+	m_walls[0].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
+
+	// Left wall
+	m_walls[1].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
+
+	// Bottom wall
+	m_walls[2].setTextureRect(sf::IntRect(0, 0, screenSizes.width, wallSizes.y));
+	m_walls[2].setPosition(0, (float)screenSizes.height - wallSizes.y);
+
+	// Right wall
+	m_walls[3].setTextureRect(sf::IntRect(0, 0, wallSizes.x, screenSizes.height));
+	m_walls[3].setPosition((float)screenSizes.width - wallSizes.x, 0);
+}
+
+void GamePlay::initTexts()
+{
+	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+
+	m_scoreText.setFont(font);
+	m_scoreText.setString(std::to_string(m_playerScore));
+	m_scoreText.setFillColor(sf::Color::Yellow);
+}
+
+void GamePlay::initSnake()
+{
+	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), 
+		m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
+}
+
+void GamePlay::initFruits()
+{
+	// Handle fruits
+	m_fruits[0].setTexture(m_context->m_assetManager->getTexture(TextureType::APPLE));
+	m_fruits[1].setTexture(m_context->m_assetManager->getTexture(TextureType::CHERRY));
+	m_fruits[2].setTexture(m_context->m_assetManager->getTexture(TextureType::WATERMELON));
+	m_fruits[3].setTexture(m_context->m_assetManager->getTexture(TextureType::KIWI));
+	spawnFruit();
 }
