@@ -28,7 +28,7 @@ private:
 	sf::Sprite m_currentFruit;
 
 	// Snake
-	const float m_snakeSpeed;
+	float m_snakeSpeed;
 	SnakeDirection m_snakeDir;
 	Snake m_snake;
 	int m_playerScore;
@@ -54,6 +54,9 @@ private:
 	void initTexts();
 	void initSnake();
 	void initFruits();
+
+	void checkCollisions();
+	void handleSnakeEatFruit();
 
 };
 

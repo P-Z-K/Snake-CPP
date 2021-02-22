@@ -33,34 +33,11 @@ void GamePlay::update(const sf::Time& deltaTime)
 {
 	elapsedTime += deltaTime;
 
+	// TODO: Need to implement functionality that speed up snake when it eats fruit
 	// Its a snake speed limiter
 	while (elapsedTime.asSeconds() > m_snakeSpeed)
 	{
-		// Check walls collisions
-		for (auto& wall : m_walls)
-		{
-			if (m_snake.isOn(wall))
-			{
-				std::cout << "Snake hits wall!\n";
-				m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
-			}
-		}
-
-		if (m_snake.isSelfIntersects())
-		{
-			std::cout << "Snake is self intersecting!\n";
-			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
-		}
-
-		if (m_snake.isOn(m_currentFruit))
-		{
-			std::cout << "Snake ate fruit!\n";
-			++m_playerScore;
-			m_snake.grow();
-
-			// Snake ate fruit, thus we spawn another
-			spawnFruit();
-		}
+		checkCollisions();
 
 		// Update texts
 		m_scoreText.setString(std::to_string(m_playerScore));
@@ -228,5 +205,41 @@ void GamePlay::initFruits()
 	m_fruits[1].setTexture(m_context->m_assetManager->getTexture(TextureType::CHERRY));
 	m_fruits[2].setTexture(m_context->m_assetManager->getTexture(TextureType::WATERMELON));
 	m_fruits[3].setTexture(m_context->m_assetManager->getTexture(TextureType::KIWI));
+	spawnFruit();
+}
+
+void GamePlay::checkCollisions()
+{
+	// Check walls collisions
+	for (auto& wall : m_walls)
+	{
+		if (m_snake.isOn(wall))
+		{
+			std::cout << "Snake hits wall!\n";
+			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
+		}
+	}
+
+	if (m_snake.isSelfIntersects())
+	{
+		std::cout << "Snake is self intersecting!\n";
+		m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
+	}
+
+	if (m_snake.isOn(m_currentFruit))
+	{
+		handleSnakeEatFruit();
+	}
+}
+
+void GamePlay::handleSnakeEatFruit()
+{
+	std::cout << "Snake ate fruit!\n";
+	++m_playerScore;
+	m_snake.grow();
+
+	m_snakeSpeed -= Settings::SNAKE_SPEED_INCREASE;
+
+	// Snake ate fruit, thus we spawn another
 	spawnFruit();
 }
