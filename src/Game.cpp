@@ -25,8 +25,8 @@ void Game::run()
 		clock.restart();
 
 		m_context->m_sceneManager->processSceneChange();
-		m_context->m_sceneManager->getCurrent()->draw();
 		m_context->m_sceneManager->getCurrent()->handleInputs();
 		m_context->m_sceneManager->getCurrent()->update(elapsedTime);
+		m_context->m_sceneManager->getCurrent()->draw();
 	}
 }

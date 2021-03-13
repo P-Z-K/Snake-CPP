@@ -3,7 +3,7 @@
 Snake::Snake() :
 	m_snakeBody(std::vector<sf::Sprite>(Settings::SNAKE_START_LENGTH))
 {
-	m_snakeBody.reserve(20); // TODO: Need to create custom allocator
+	m_snakeBody.reserve(32);
 	m_head = m_snakeBody.begin();
 }
 
@@ -28,10 +28,6 @@ void Snake::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
-/* TODO: Need to fix snake's movement bug. 
-	When you press fastly up or down key and 
-	then immediately press right or left key(depends on the current snake's direction), 
-	snake will make illegal move(turn around in place) */
 void Snake::move(SnakeDirection newDir)
 {
 	for (size_t i = m_snakeBody.size() - 1; i > 0; --i)
@@ -115,6 +111,7 @@ sf::Vector2f Snake::dirToVector(SnakeDirection dir)
 		return sf::Vector2f((float)UNIT, 0.f);
 		break;
 	default:
+		return sf::Vector2f((float)UNIT, 0.f);
 		break;
 	}
 }

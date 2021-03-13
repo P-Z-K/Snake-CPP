@@ -18,6 +18,10 @@ private:
 	sf::Event m_event;
 	std::shared_ptr<Context> m_context;
 
+	// Music
+	std::unique_ptr<sf::Music> m_soundrack = nullptr;
+	sf::Sound m_hitSound;
+
 	// Texts
 	sf::Text m_scoreText;
 
@@ -54,9 +58,11 @@ private:
 	void initTexts();
 	void initSnake();
 	void initFruits();
+	void initSounds();
 
 	void checkCollisions();
 	void handleSnakeEatFruit();
+	void loadGameOverMenu();
 
 };
 

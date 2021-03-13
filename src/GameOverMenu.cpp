@@ -59,6 +59,9 @@ void GameOverMenu::init()
 	initTitle();
 	initButtons();
 	initScoreInfo();
+	initSounds();
+
+	m_gameOverSound.play();
 }
 
 void GameOverMenu::draw()
@@ -149,4 +152,9 @@ void GameOverMenu::initScoreInfo()
 	m_playerScoreText->setPosition(Settings::W_WIDTH / 2, 115.f);
 
 	// =================================================
+}
+
+void GameOverMenu::initSounds()
+{
+	m_gameOverSound.setBuffer(m_context->m_assetManager->getSound(SoundType::GAMEOVER));
 }

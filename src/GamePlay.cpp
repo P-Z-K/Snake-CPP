@@ -1,5 +1,7 @@
 #include "GamePlay.h"
 
+//TODO: Need to implement sound effects when the snake eat fruit
+
 GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_context(context),
 	m_snakeDir(SnakeDirection::RIGHT),
@@ -33,7 +35,6 @@ void GamePlay::update(const sf::Time& deltaTime)
 {
 	elapsedTime += deltaTime;
 
-	// TODO: Need to implement functionality that speed up snake when it eats fruit
 	// Its a snake speed limiter
 	while (elapsedTime.asSeconds() > m_snakeSpeed)
 	{
@@ -62,11 +63,15 @@ void GamePlay::init()
 	m_context->m_assetManager->loadTexture("Assets/Fruits/watermelon.png", TextureType::WATERMELON);
 	m_context->m_assetManager->loadTexture("Assets/Fruits/kiwi.png", TextureType::KIWI);
 
+	m_context->m_assetManager->loadSoundBuffer("Assets/Music/Hit.wav", SoundType::HIT);
+	m_context->m_assetManager->loadSoundBuffer("Assets/Music/GameOver.wav", SoundType::GAMEOVER);
+
 
 	initTerrain();
 	initSnake();
 	initFruits();
 	initTexts();
+	initSounds();
 }
 
 void GamePlay::draw()
@@ -111,8 +116,6 @@ void GamePlay::handleSnakeMovement(sf::Keyboard::Key key)
 		break;
 	}
 
-	// TODO: it could be better implemented
-	// Prevent snake from doing illegal moves
 	if (newDir == SnakeDirection::UP && m_snakeDir == SnakeDirection::DOWN ||
 		newDir == SnakeDirection::DOWN && m_snakeDir == SnakeDirection::UP ||
 		newDir == SnakeDirection::LEFT && m_snakeDir == SnakeDirection::RIGHT ||
@@ -208,6 +211,16 @@ void GamePlay::initFruits()
 	spawnFruit();
 }
 
+void GamePlay::initSounds()
+{
+	m_soundrack = m_context->m_assetManager->getSoundtrack("Assets/Music/Soundtrack.wav");
+	m_soundrack->setVolume(15.f);
+	m_soundrack->setLoop(true);
+	m_soundrack->play();
+
+	m_hitSound.setBuffer(m_context->m_assetManager->getSound(SoundType::HIT));	
+}
+
 void GamePlay::checkCollisions()
 {
 	// Check walls collisions
@@ -216,14 +229,14 @@ void GamePlay::checkCollisions()
 		if (m_snake.isOn(wall))
 		{
 			std::cout << "Snake hits wall!\n";
-			m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
+			loadGameOverMenu();
 		}
 	}
 
 	if (m_snake.isSelfIntersects())
 	{
 		std::cout << "Snake is self intersecting!\n";
-		m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
+		loadGameOverMenu();
 	}
 
 	if (m_snake.isOn(m_currentFruit))
@@ -236,10 +249,17 @@ void GamePlay::handleSnakeEatFruit()
 {
 	std::cout << "Snake ate fruit!\n";
 	++m_playerScore;
+	m_hitSound.play();
+
 	m_snake.grow();
 
 	m_snakeSpeed -= Settings::SNAKE_SPEED_INCREASE;
 
 	// Snake ate fruit, thus we spawn another
 	spawnFruit();
+}
+
+void GamePlay::loadGameOverMenu()
+{
+	m_context->m_sceneManager->push(std::make_unique<GameOverMenu>(m_context, m_playerScore), true);
 }

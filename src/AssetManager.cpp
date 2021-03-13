@@ -35,6 +35,33 @@ void AssetManager::loadFont(const std::string& filePath, FontType type)
 	}
 }
 
+void AssetManager::loadSoundBuffer(const std::string& filePath, SoundType type)
+{
+	auto soundBuffer = std::make_unique<sf::SoundBuffer>();
+
+	if (soundBuffer->loadFromFile(filePath))
+	{
+		m_sounds.emplace(type, std::move(soundBuffer));
+	}
+	else
+	{
+		std::cout << "Sound " << filePath << " not loaded!\n";
+	}
+}
+
+std::unique_ptr<sf::Music> AssetManager::getSoundtrack(const std::string& filePath)
+{
+	auto music = std::make_unique<sf::Music>();
+
+	if (!music->openFromFile(filePath))
+	{
+		std::cout << "Soundtrack not loaded!";
+		return nullptr;
+	}
+
+	return music;
+}
+
 const sf::Texture& AssetManager::getTexture(TextureType type) const
 {
 	return *(m_textures.at(type).get());
@@ -43,6 +70,11 @@ const sf::Texture& AssetManager::getTexture(TextureType type) const
 const sf::Font& AssetManager::getFont(FontType type) const
 {
 	return *(m_fonts.at(type).get());
+}
+
+const sf::SoundBuffer& AssetManager::getSound(SoundType type) const
+{
+	return *(m_sounds.at(type).get());
 }
 
 
