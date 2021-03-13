@@ -4,13 +4,13 @@ Simple retro snake game created with modern C++ and SFML 2.5.1
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Setup](#setup)
+* [Resources](#resources)
+* [Setup {Not added yet} ](#setup)
 * [Overview](#overview)
 
 ## General info
 This project is my first try with making a game with C++ and SFML. 
 I decided to do it as i would like to improve my C++ and programming skills in games creation.
-Whole assets etc. was only created by me.
 
 ## Technologies
 Project is created with:
@@ -18,7 +18,14 @@ Project is created with:
 * SFML 2.5.1
 * RichText (https://github.com/skyrpex/RichText)
 
-## Setup [Not added yet]
+## Resources
+Resources used in game:
+* Textures (created by myself)
+* Font (https://fonts.google.com/specimen/Potta+One?preview.text_type=custom)
+* Soundtrack (https://assetstore.unity.com/packages/audio/music/electronic/free-retro-music-se-33285#description)
+* Other sounds (https://assetstore.unity.com/packages/audio/sound-fx/sound-fx-retro-pack-121743)
+
+## Setup
 I am going to add simple installer to folder "Installer" which will install all key requirements.
 It allows you to quickly install game and start playing.
 
