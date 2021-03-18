@@ -197,7 +197,7 @@ void GamePlay::initTexts()
 
 void GamePlay::initSnake()
 {
-	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD), 
+	m_snake.init(m_context->m_assetManager->getTexture(TextureType::SNAKEHEAD),
 		m_context->m_assetManager->getTexture(TextureType::SNAKETAIL));
 }
 
@@ -214,11 +214,15 @@ void GamePlay::initFruits()
 void GamePlay::initSounds()
 {
 	m_soundrack = m_context->m_assetManager->getSoundtrack("Assets/Music/Soundtrack.wav");
-	m_soundrack->setVolume(15.f);
-	m_soundrack->setLoop(true);
-	m_soundrack->play();
 
-	m_hitSound.setBuffer(m_context->m_assetManager->getSound(SoundType::HIT));	
+	if (m_soundrack)
+	{
+		m_soundrack->setVolume(15.f);
+		m_soundrack->setLoop(true);
+		m_soundrack->play();
+	}
+
+	m_hitSound.setBuffer(m_context->m_assetManager->getSound(SoundType::HIT));
 }
 
 void GamePlay::checkCollisions()
