@@ -3,12 +3,12 @@
 #include "Scene.h"
 #include "GamePlay.h"
 
-GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context) :
+GameOverMenu::GameOverMenu(std::shared_ptr<Context> context) :
 	m_context(context)
 {
 }
 
-GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context, int playerScore) :
+GameOverMenu::GameOverMenu(std::shared_ptr<Context> context, int playerScore) :
 	m_context(context),
 	m_playerScore(playerScore)
 {

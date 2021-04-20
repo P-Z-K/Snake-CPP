@@ -15,35 +15,35 @@
 class GamePlay : public Scene
 {
 private:
-	sf::Time elapsedTime;
-	sf::Event m_event;
+	sf::Time elapsedTime{};
+	sf::Event m_event{};
 	std::shared_ptr<Context> m_context;
 
 	// Music
-	std::unique_ptr<sf::Music> m_soundrack = nullptr;
-	sf::Sound m_hitSound;
+	std::unique_ptr<sf::Music> m_soundrack{ nullptr };
+	sf::Sound m_hitSound{};
 
 	// Texts
-	sf::Text m_scoreText;
+	sf::Text m_scoreText{};
 
 	// Terrain
 	std::array<sf::Sprite, 4> m_walls;
-	sf::Sprite m_grass;
+	sf::Sprite m_grass{};
 	std::array<sf::Sprite, 4> m_fruits;
-	sf::Sprite m_currentFruit;
+	sf::Sprite m_currentFruit{};
 
 	// Snake
 	float m_snakeSpeed = Settings::SNAKE_SPEED;
 	SnakeDirection m_snakeDir = SnakeDirection::RIGHT;
-	Snake m_snake;
-	int m_playerScore = 0;
+	Snake m_snake{};
+	int m_playerScore{0};
 
 	// Random numbers
 	std::random_device m_rd;
 	std::mt19937 m_gen;
 
 public:
-	GamePlay(const std::shared_ptr<Context>& context);
+	GamePlay(std::shared_ptr<Context> context);
 
 public:
 	void handleInputs() override;

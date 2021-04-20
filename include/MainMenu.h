@@ -11,19 +11,19 @@ class MainMenu : public Scene
 {
 private:
 	std::shared_ptr<Context> m_context;
-	sf::Event m_event;
+	sf::Event m_event{};
 
 	// Texts
-	sf::Text m_title;
-	sf::Text m_playButton;
-	sf::Text m_exitButton;
+	sf::Text m_title{};
+	sf::Text m_playButton{};
+	sf::Text m_exitButton{};
 
 	// Menu logic
 	bool m_isPlayButtonFocused = true;
 	bool m_isExitButtonFocused = false;
 
 public:
-	MainMenu(const std::shared_ptr<Context>& context);
+	MainMenu(std::shared_ptr<Context> context);
 
 public:
 	void handleInputs() override;

@@ -3,7 +3,7 @@
 #include "Scene.h"
 #include "Game.h"
 
-PauseMenu::PauseMenu(const std::shared_ptr<Context>& context) :
+PauseMenu::PauseMenu(std::shared_ptr<Context> context) :
 	m_context(context)
 {
 }

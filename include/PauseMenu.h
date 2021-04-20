@@ -12,13 +12,13 @@ class PauseMenu : public Scene
 {
 private:
 	std::shared_ptr<Context> m_context;
-	sf::Event m_event;
+	sf::Event m_event{};
 
 	// Texts
-	sf::Text m_pauseText;
+	sf::Text m_pauseText{};
 
 public:
-	PauseMenu(const std::shared_ptr<Context>& context);
+	PauseMenu(std::shared_ptr<Context> context);
 
 public:
 	void handleInputs() override;

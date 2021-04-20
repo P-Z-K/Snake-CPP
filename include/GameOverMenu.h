@@ -12,15 +12,15 @@ class GameOverMenu : public Scene
 {
 private:
 	std::shared_ptr<Context> m_context;
-	sf::Event m_event;
+	sf::Event m_event{};
 
-	sf::Sound m_gameOverSound;
+	sf::Sound m_gameOverSound{};
 
 	// Texts
-	sf::Text m_title;
-	sf::Text m_playAgainButton;
-	sf::Text m_exitButton;
-	std::unique_ptr<sfe::RichText> m_playerScoreText;
+	sf::Text m_title{};
+	sf::Text m_playAgainButton{};
+	sf::Text m_exitButton{};
+	std::unique_ptr<sfe::RichText> m_playerScoreText{ nullptr };
 
 	// Player
 	int m_playerScore = -1;
@@ -30,8 +30,8 @@ private:
 	bool m_isExitButtonActive = false;
 
 public:
-	GameOverMenu(const std::shared_ptr<Context>& context);
-	GameOverMenu(const std::shared_ptr<Context>& context, int playerScore);
+	GameOverMenu(std::shared_ptr<Context> context);
+	GameOverMenu(std::shared_ptr<Context> context, int playerScore);
 
 public:
 	void handleInputs() override;

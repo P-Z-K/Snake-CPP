@@ -8,7 +8,7 @@
 #include "PauseMenu.h"
 #include "GameOverMenu.h"
 
-GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
+GamePlay::GamePlay(std::shared_ptr<Context> context) :
 	m_context(context),
 	m_gen(m_rd())
 {
