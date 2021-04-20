@@ -1,14 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <RichText.hpp>
 
 #include <memory>
 
-
-#include "Scene.h"
 #include "Game.h"
-#include "GamePlay.h"
 
 class GameOverMenu : public Scene
 {
@@ -25,11 +23,11 @@ private:
 	std::unique_ptr<sfe::RichText> m_playerScoreText;
 
 	// Player
-	int m_playerScore;
+	int m_playerScore = -1;
 
 	// Menu logic
-	bool m_isPlayAgainButtonActive;
-	bool m_isExitButtonActive;
+	bool m_isPlayAgainButtonActive = true;
+	bool m_isExitButtonActive = false;
 
 public:
 	GameOverMenu(const std::shared_ptr<Context>& context);

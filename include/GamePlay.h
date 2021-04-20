@@ -1,15 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <memory>
 #include <array>
+#include <random>
 
-#include "Scene.h"
 #include "Game.h"
+#include "Scene.h"
 #include "Snake.h"
-#include "PauseMenu.h"
-#include "GameOverMenu.h"
+
 
 class GamePlay : public Scene
 {
@@ -32,10 +33,10 @@ private:
 	sf::Sprite m_currentFruit;
 
 	// Snake
-	float m_snakeSpeed;
-	SnakeDirection m_snakeDir;
+	float m_snakeSpeed = Settings::SNAKE_SPEED;
+	SnakeDirection m_snakeDir = SnakeDirection::RIGHT;
 	Snake m_snake;
-	int m_playerScore;
+	int m_playerScore = 0;
 
 	// Random numbers
 	std::random_device m_rd;

@@ -11,9 +11,9 @@ private:
 	std::unique_ptr<Scene> m_newScene;
 	std::stack<std::unique_ptr<Scene> > m_sceneStack;
 
-	bool m_shouldAdd;
-	bool m_shouldRemove;
-	bool m_shouldReplace;
+	bool m_shouldAdd = false;
+	bool m_shouldRemove = false;
+	bool m_shouldReplace = false;
 
 public:
 	SceneManager();

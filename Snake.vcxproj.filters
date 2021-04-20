@@ -94,8 +94,15 @@
     <Image Include="Assets\grass.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\wall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\PottaOne-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="README.md" />
   </ItemGroup>
 </Project>

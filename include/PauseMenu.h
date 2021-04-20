@@ -4,8 +4,9 @@
 
 #include <memory>
 
-#include "Scene.h"
 #include "Game.h"
+#include "Scene.h"
+
 
 class PauseMenu : public Scene
 {

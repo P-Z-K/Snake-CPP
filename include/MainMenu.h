@@ -4,9 +4,8 @@
 
 #include <memory>
 
-#include "Scene.h"
-#include "GamePlay.h"
 #include "Game.h"
+#include "Scene.h"
 
 class MainMenu : public Scene
 {
@@ -20,8 +19,8 @@ private:
 	sf::Text m_exitButton;
 
 	// Menu logic
-	bool m_isPlayButtonFocused;
-	bool m_isExitButtonFocused;
+	bool m_isPlayButtonFocused = true;
+	bool m_isExitButtonFocused = false;
 
 public:
 	MainMenu(const std::shared_ptr<Context>& context);

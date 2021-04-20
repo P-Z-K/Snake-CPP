@@ -180,9 +180,14 @@
     <Image Include="Assets\head.png" />
     <Image Include="Assets\tail.png" />
     <Image Include="Assets\testing.png" />
+    <Image Include="Assets\wall.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\PottaOne-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

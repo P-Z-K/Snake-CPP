@@ -1,16 +1,17 @@
 #include "GamePlay.h"
 
-//TODO: Need to implement sound effects when the snake eat fruit
+#include <iostream>
+
+#include "Scene.h"
+#include "Game.h"
+#include "Snake.h"
+#include "PauseMenu.h"
+#include "GameOverMenu.h"
 
 GamePlay::GamePlay(const std::shared_ptr<Context>& context) :
 	m_context(context),
-	m_snakeDir(SnakeDirection::RIGHT),
-	m_snakeSpeed(Settings::SNAKE_SPEED),
-	m_event(),
-	m_gen(m_rd()),
-	m_playerScore(0)
+	m_gen(m_rd())
 {
-
 }
 
 void GamePlay::handleInputs()

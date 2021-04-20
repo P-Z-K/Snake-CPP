@@ -1,5 +1,7 @@
 #include "Snake.h"
 
+#include <iostream>
+
 Snake::Snake() :
 	m_snakeBody(std::vector<sf::Sprite>(Settings::SNAKE_START_LENGTH))
 {

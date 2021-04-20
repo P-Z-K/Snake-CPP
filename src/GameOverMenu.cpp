@@ -1,19 +1,15 @@
 #include "GameOverMenu.h"
 
+#include "Scene.h"
+#include "GamePlay.h"
+
 GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context) :
-	m_context(context),
-	m_isPlayAgainButtonActive(true),
-	m_isExitButtonActive(false),
-	m_event(),
-	m_playerScore(-1)
+	m_context(context)
 {
 }
 
 GameOverMenu::GameOverMenu(const std::shared_ptr<Context>& context, int playerScore) :
 	m_context(context),
-	m_isPlayAgainButtonActive(true),
-	m_isExitButtonActive(false),
-	m_event(),
 	m_playerScore(playerScore)
 {
 }

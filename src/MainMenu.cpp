@@ -1,10 +1,11 @@
 #include "MainMenu.h"
 
+#include "Scene.h"
+#include "GamePlay.h"
+#include "Game.h"
+
 MainMenu::MainMenu(const std::shared_ptr<Context>& context) :
-	m_context(context),
-	m_isPlayButtonFocused(true),
-	m_isExitButtonFocused(false),
-	m_event()
+	m_context(context)
 {
 }
 

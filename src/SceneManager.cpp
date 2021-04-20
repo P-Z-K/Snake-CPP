@@ -1,9 +1,6 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager() :
-    m_shouldAdd(false),
-    m_shouldRemove(false),
-    m_shouldReplace(false)
+SceneManager::SceneManager()
 {
 }
 
