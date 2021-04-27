@@ -4,8 +4,6 @@
 
 #include <vector>
 
-#include "Settings.h"
-
 enum class SnakeDirection
 {
 	UP,
@@ -23,19 +21,17 @@ private:
 public:
 	Snake();
 
-public:
-	const std::vector<sf::Sprite>& getBody() const;
+	const std::vector<sf::Sprite>& GetBody() const;
 
-public:
-	void init(const sf::Texture& head, const sf::Texture& tail);
+	void Init(const sf::Texture& head, const sf::Texture& tail);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	void move(SnakeDirection newDir);
-	void grow();
-	bool isOn(const sf::Sprite& other) const;
-	bool isSelfIntersects() const;
+	void Move(SnakeDirection newDir);
+	void Grow();
+	bool IsOn(const sf::Sprite& other) const;
+	bool IsSelfIntersects() const;
 
 private:
-	void initPosition();
-	sf::Vector2f dirToVector(SnakeDirection dir);
+	void InitPosition();
+	static sf::Vector2f DirToVector(SnakeDirection dir);
 };
 

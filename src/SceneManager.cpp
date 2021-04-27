@@ -1,10 +1,6 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager()
-{
-}
-
-void SceneManager::push(std::unique_ptr<Scene> scene, bool wantReplace)
+void SceneManager::Push(std::unique_ptr<Scene> scene, const bool wantReplace)
 {
     m_shouldAdd = true;
 
@@ -13,12 +9,12 @@ void SceneManager::push(std::unique_ptr<Scene> scene, bool wantReplace)
     m_shouldReplace = wantReplace;
 }
 
-void SceneManager::pop()
+void SceneManager::Pop()
 {
     m_shouldRemove = true;
 }
 
-void SceneManager::processSceneChange()
+void SceneManager::ProcessSceneChange()
 {
     if (m_shouldRemove && !m_sceneStack.empty())
     {
@@ -37,11 +33,11 @@ void SceneManager::processSceneChange()
 
         m_sceneStack.push(std::move(m_newScene));
         m_shouldAdd = false;
-        m_sceneStack.top()->init();
+        m_sceneStack.top()->Init();
     }
 }
 
-std::unique_ptr<Scene>& SceneManager::getCurrent()
+std::unique_ptr<Scene>& SceneManager::GetCurrent()
 {
     return m_sceneStack.top();
 }

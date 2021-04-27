@@ -1,14 +1,14 @@
 #include "PauseMenu.h"
 
-#include "Scene.h"
 #include "Game.h"
+#include "Settings.h"
 
 PauseMenu::PauseMenu(std::shared_ptr<Context> context) :
 	m_context(context)
 {
 }
 
-void PauseMenu::handleInputs()
+void PauseMenu::HandleInputs()
 {
 	while (m_context->m_window->pollEvent(m_event))
 	{
@@ -17,23 +17,23 @@ void PauseMenu::handleInputs()
 		else if (m_event.type == sf::Event::KeyPressed)
 		{
 			if (m_event.key.code == sf::Keyboard::Space)
-				m_context->m_sceneManager->pop();
+				m_context->m_sceneManager->Pop();
 		}
 	}
 }
 
-void PauseMenu::update(const sf::Time& deltaTime)
+void PauseMenu::Update(const sf::Time& deltaTime)
 {
 }
 
-void PauseMenu::init()
+void PauseMenu::Init()
 {
-	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+	auto& font = m_context->m_assetManager->GetFont(FontType::PRIMARYFONT);
 
 	// Pause title
 	m_pauseText.setFont(font);
 	m_pauseText.setString("Paused");
-	m_pauseText.setCharacterSize(Settings::PAUSE_TITLE_SIZE);
+	m_pauseText.setCharacterSize(Settings::Pause_Title_Size);
 	m_pauseText.setFillColor(sf::Color::White);
 	m_pauseText.setLetterSpacing(1.5f);
 
@@ -41,12 +41,12 @@ void PauseMenu::init()
 	m_pauseText.setOrigin(m_pauseText.getGlobalBounds().width / 2, m_pauseText.getGlobalBounds().height / 2);
 
 	// Center horizontally
-	m_pauseText.setPosition(Settings::W_WIDTH / 2, 150.f);
+	m_pauseText.setPosition(static_cast<float>(Settings::W_Width) / 2, 150.f);
 }
 
-void PauseMenu::draw()
+void PauseMenu::Draw()
 {
-	// we dont use clear method there, as we dont want to clear screen with our gameplay
+	// we dont use clear method there, as we dont want to clear screen with our game play
 	m_context->m_window->draw(m_pauseText);
 	m_context->m_window->display();
 }

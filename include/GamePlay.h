@@ -9,18 +9,19 @@
 
 #include "Game.h"
 #include "Scene.h"
+#include "Settings.h"
 #include "Snake.h"
 
 
 class GamePlay : public Scene
 {
 private:
-	sf::Time elapsedTime{};
+	sf::Time m_elapsedTime{};
 	sf::Event m_event{};
 	std::shared_ptr<Context> m_context;
 
 	// Music
-	std::unique_ptr<sf::Music> m_soundrack{ nullptr };
+	std::unique_ptr<sf::Music> m_soundtrack{ nullptr };
 	sf::Sound m_hitSound{};
 
 	// Texts
@@ -33,7 +34,7 @@ private:
 	sf::Sprite m_currentFruit{};
 
 	// Snake
-	float m_snakeSpeed = Settings::SNAKE_SPEED;
+	float m_snakeSpeed = Settings::Snake_Speed;
 	SnakeDirection m_snakeDir = SnakeDirection::RIGHT;
 	Snake m_snake{};
 	int m_playerScore{0};
@@ -43,27 +44,27 @@ private:
 	std::mt19937 m_gen;
 
 public:
+	GamePlay() = delete;
 	GamePlay(std::shared_ptr<Context> context);
 
-public:
-	void handleInputs() override;
-	void update(const sf::Time& deltaTime) override;
-	void init() override;
-	void draw() override;
+	void HandleInputs() override;
+	void Update(const sf::Time& deltaTime) override;
+	void Init() override;
+	void Draw() override;
 
 private:
-	void handleSnakeMovement(sf::Keyboard::Key key);
-	void spawnFruit();
+	void HandleSnakeMovement(sf::Keyboard::Key key);
+	void SpawnFruit();
 
-	void initTerrain();
-	void initTexts();
-	void initSnake();
-	void initFruits();
-	void initSounds();
+	void InitTerrain();
+	void InitTexts();
+	void InitSnake();
+	void InitFruits();
+	void InitSounds();
 
-	void checkCollisions();
-	void handleSnakeEatFruit();
-	void loadGameOverMenu();
+	void CheckCollisions();
+	void HandleSnakeEatFruit();
+	void LoadGameOverMenu();
 
 };
 

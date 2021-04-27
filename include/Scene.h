@@ -5,13 +5,12 @@
 class Scene
 {
 public:
-	Scene() {};
-	virtual ~Scene() {};
+	Scene() = default;
+	virtual ~Scene() = default;
 
-public:
-	virtual void handleInputs() = 0;
-	virtual void update(const sf::Time& deltaTime) = 0;
-	virtual void init() = 0;
-	virtual void draw() = 0;
+	virtual void HandleInputs() = 0;
+	virtual void Update(const sf::Time& deltaTime) = 0;
+	virtual void Init() = 0;
+	virtual void Draw() = 0;
 };
 

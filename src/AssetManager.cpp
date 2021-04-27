@@ -8,7 +8,7 @@ AssetManager::AssetManager() :
 {
 }
 
-void AssetManager::loadTexture(const std::string& filePath, TextureType type, bool isRepeated)
+void AssetManager::LoadTexture(const std::string& filePath, TextureType type, const bool isRepeated)
 {
 	auto texture = std::make_unique<sf::Texture>();
 
@@ -23,7 +23,7 @@ void AssetManager::loadTexture(const std::string& filePath, TextureType type, bo
 	}
 }
 
-void AssetManager::loadFont(const std::string& filePath, FontType type)
+void AssetManager::LoadFont(const std::string& filePath, FontType type)
 {
 	auto font = std::make_unique<sf::Font>();
 
@@ -37,7 +37,7 @@ void AssetManager::loadFont(const std::string& filePath, FontType type)
 	}
 }
 
-void AssetManager::loadSoundBuffer(const std::string& filePath, SoundType type)
+void AssetManager::LoadSoundBuffer(const std::string& filePath, SoundType type)
 {
 	auto soundBuffer = std::make_unique<sf::SoundBuffer>();
 
@@ -51,7 +51,7 @@ void AssetManager::loadSoundBuffer(const std::string& filePath, SoundType type)
 	}
 }
 
-std::unique_ptr<sf::Music> AssetManager::getSoundtrack(const std::string& filePath)
+std::unique_ptr<sf::Music> AssetManager::GetSoundtrack(const std::string& filePath) const
 {
 	auto music = std::make_unique<sf::Music>();
 
@@ -64,17 +64,17 @@ std::unique_ptr<sf::Music> AssetManager::getSoundtrack(const std::string& filePa
 	return music;
 }
 
-const sf::Texture& AssetManager::getTexture(TextureType type) const
+const sf::Texture& AssetManager::GetTexture(const TextureType type) const
 {
 	return *(m_textures.at(type).get());
 }
 
-const sf::Font& AssetManager::getFont(FontType type) const
+const sf::Font& AssetManager::GetFont(const FontType type) const
 {
 	return *(m_fonts.at(type).get());
 }
 
-const sf::SoundBuffer& AssetManager::getSound(SoundType type) const
+const sf::SoundBuffer& AssetManager::GetSound(const SoundType type) const
 {
 	return *(m_sounds.at(type).get());
 }

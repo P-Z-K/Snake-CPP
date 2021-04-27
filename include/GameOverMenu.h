@@ -30,22 +30,22 @@ private:
 	bool m_isExitButtonActive = false;
 
 public:
+	GameOverMenu() = delete;
 	GameOverMenu(std::shared_ptr<Context> context);
 	GameOverMenu(std::shared_ptr<Context> context, int playerScore);
 
-public:
-	void handleInputs() override;
-	void update(const sf::Time& deltaTime) override;
-	void init() override;
-	void draw() override;
+	void HandleInputs() override;
+	void Update(const sf::Time& deltaTime) override;
+	void Init() override;
+	void Draw() override;
 
 private:
-	void tryChangeScene();
+	void TryChangeScene();
 
-	void initTitle();
-	void initButtons();
-	void initScoreInfo();
-	void initSounds();
+	void InitTitle();
+	void InitButtons();
+	void InitScoreInfo();
+	void InitSounds();
 
 };
 

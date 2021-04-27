@@ -16,14 +16,12 @@ private:
 	bool m_shouldReplace = false;
 
 public:
-	SceneManager();
+	SceneManager() = default;
 
-public:
-	std::unique_ptr<Scene>& getCurrent();
+	std::unique_ptr<Scene>& GetCurrent();
 
-public:
-	void push(std::unique_ptr<Scene> scene, bool wantReplace = false);
-	void pop();
-	void processSceneChange();
+	void Push(std::unique_ptr<Scene> scene, bool wantReplace = false);
+	void Pop();
+	void ProcessSceneChange();
 };
 

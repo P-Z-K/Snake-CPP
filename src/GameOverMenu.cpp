@@ -14,7 +14,7 @@ GameOverMenu::GameOverMenu(std::shared_ptr<Context> context, int playerScore) :
 {
 }
 
-void GameOverMenu::handleInputs()
+void GameOverMenu::HandleInputs()
 {
 	while (m_context->m_window->pollEvent(m_event))
 	{
@@ -29,14 +29,14 @@ void GameOverMenu::handleInputs()
 			}
 			else if (m_event.key.code == sf::Keyboard::Enter)
 			{
-				tryChangeScene();
+				TryChangeScene();
 			}
 		}
 
 	}
 }
 
-void GameOverMenu::update(const sf::Time& deltaTime)
+void GameOverMenu::Update(const sf::Time& deltaTime)
 {
 	if (m_isPlayAgainButtonActive)
 	{
@@ -50,17 +50,17 @@ void GameOverMenu::update(const sf::Time& deltaTime)
 	}
 }
 
-void GameOverMenu::init()
+void GameOverMenu::Init()
 {
-	initTitle();
-	initButtons();
-	initScoreInfo();
-	initSounds();
+	InitTitle();
+	InitButtons();
+	InitScoreInfo();
+	InitSounds();
 
 	m_gameOverSound.play();
 }
 
-void GameOverMenu::draw()
+void GameOverMenu::Draw()
 {
 	m_context->m_window->clear();
 
@@ -72,21 +72,21 @@ void GameOverMenu::draw()
 	m_context->m_window->display();
 }
 
-void GameOverMenu::tryChangeScene()
+void GameOverMenu::TryChangeScene()
 {
 	if (m_isPlayAgainButtonActive)
-		m_context->m_sceneManager->push(std::make_unique<GamePlay>(m_context), true);
+		m_context->m_sceneManager->Push(std::make_unique<GamePlay>(m_context), true);
 	else if (m_isExitButtonActive)
 		m_context->m_window->close();
 }
 
-void GameOverMenu::initTitle()
+void GameOverMenu::InitTitle()
 {
-	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+	auto& font = m_context->m_assetManager->GetFont(FontType::PRIMARYFONT);
 
 	// Title text
 	m_title.setFont(font);
-	m_title.setCharacterSize(Settings::SNAKE_TITLE_SIZE);
+	m_title.setCharacterSize(Settings::Snake_Title_Size);
 	m_title.setString("Game Over");
 	m_title.setFillColor(sf::Color::White);
 
@@ -94,47 +94,47 @@ void GameOverMenu::initTitle()
 	m_title.setOrigin(m_title.getGlobalBounds().width / 2,
 		m_title.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_title.setPosition(Settings::W_WIDTH / 2, 50.f);
+	m_title.setPosition(Settings::W_Width / 2, 50.f);
 
 	// =================================================
 }
 
-void GameOverMenu::initButtons()
+void GameOverMenu::InitButtons()
 {
-	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+	auto& font = m_context->m_assetManager->GetFont(FontType::PRIMARYFONT);
 
 	// Play again button text
 	m_playAgainButton.setFont(font);
 	m_playAgainButton.setString("Play again");
-	m_playAgainButton.setCharacterSize(Settings::BUTTON_TEXT_SIZE);
+	m_playAgainButton.setCharacterSize(Settings::Button_Text_Size);
 	m_playAgainButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
 	m_playAgainButton.setOrigin(m_playAgainButton.getGlobalBounds().width / 2,
 		m_playAgainButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_playAgainButton.setPosition(Settings::W_WIDTH / 2, 175.f);
+	m_playAgainButton.setPosition(Settings::W_Width / 2, 175.f);
 
 	// =================================================
 
 	// Exit button
 	m_exitButton.setFont(font);
 	m_exitButton.setString("Exit");
-	m_exitButton.setCharacterSize(Settings::BUTTON_TEXT_SIZE);
+	m_exitButton.setCharacterSize(Settings::Button_Text_Size);
 	m_exitButton.setFillColor(sf::Color::White);
 
 	// Set origin on the middle
 	m_exitButton.setOrigin(m_exitButton.getGlobalBounds().width / 2,
 		m_exitButton.getGlobalBounds().height / 2);
 	// Center horizontally
-	m_exitButton.setPosition(Settings::W_WIDTH / 2, 230.f);
+	m_exitButton.setPosition(Settings::W_Width / 2, 230.f);
 
 	// =================================================
 }
 
-void GameOverMenu::initScoreInfo()
+void GameOverMenu::InitScoreInfo()
 {
-	auto& font = m_context->m_assetManager->getFont(FontType::PRIMARYFONT);
+	auto& font = m_context->m_assetManager->GetFont(FontType::PRIMARYFONT);
 	// Player score text
 	m_playerScoreText = std::make_unique<sfe::RichText>(font);
 	m_playerScoreText->setCharacterSize(25);
@@ -145,12 +145,12 @@ void GameOverMenu::initScoreInfo()
 	m_playerScoreText->setOrigin(m_playerScoreText->getGlobalBounds().width / 2,
 		m_playerScoreText->getGlobalBounds().height / 2);
 	// Center horizontally
-	m_playerScoreText->setPosition(Settings::W_WIDTH / 2, 115.f);
+	m_playerScoreText->setPosition(Settings::W_Width / 2, 115.f);
 
 	// =================================================
 }
 
-void GameOverMenu::initSounds()
+void GameOverMenu::InitSounds()
 {
-	m_gameOverSound.setBuffer(m_context->m_assetManager->getSound(SoundType::GAMEOVER));
+	m_gameOverSound.setBuffer(m_context->m_assetManager->GetSound(SoundType::GAMEOVER));
 }

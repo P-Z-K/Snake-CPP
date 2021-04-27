@@ -23,19 +23,19 @@ private:
 	bool m_isExitButtonFocused = false;
 
 public:
+	MainMenu() = delete;
 	MainMenu(std::shared_ptr<Context> context);
 
-public:
-	void handleInputs() override;
-	void update(const sf::Time& deltaTime) override;
-	void init() override;
-	void draw() override;
+	void HandleInputs() override;
+	void Update(const sf::Time& deltaTime) override;
+	void Init() override;
+	void Draw() override;
 
 private:
-	void tryChangeScene();
+	void TryChangeScene();
 
-	void initTitle();
-	void initButtons();
+	void InitTitle();
+	void InitButtons();
 
 };
 

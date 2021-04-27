@@ -6,7 +6,6 @@
 
 #include "AssetManager.h"
 #include "SceneManager.h"
-#include "Settings.h"
 
 
 struct Context
@@ -32,7 +31,6 @@ private:
 public:
 	Game();
 
-public:
-	void run();
+	void Run() const;
 };
 

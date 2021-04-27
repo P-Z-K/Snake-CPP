@@ -43,14 +43,13 @@ private:
 	std::map<SoundType, std::unique_ptr<sf::SoundBuffer>>     m_sounds;
 
 public:
-	void loadTexture(const std::string& filePath, TextureType type, bool isRepeated = false);
-	void loadFont(const std::string& filePath, FontType type);
-	void loadSoundBuffer(const std::string& filePath, SoundType type);
-	std::unique_ptr<sf::Music> getSoundtrack(const std::string& filePath);
+	void LoadTexture(const std::string& filePath, TextureType type, bool isRepeated = false);
+	void LoadFont(const std::string& filePath, FontType type);
+	void LoadSoundBuffer(const std::string& filePath, SoundType type);
+	std::unique_ptr<sf::Music> GetSoundtrack(const std::string& filePath) const;
 
-public:
-	const sf::Texture& getTexture(TextureType type) const;
-	const sf::Font&	 getFont(FontType type) const;
-	const sf::SoundBuffer& getSound(SoundType type) const;
+	const sf::Texture& GetTexture(TextureType type) const;
+	const sf::Font&	 GetFont(FontType type) const;
+	const sf::SoundBuffer& GetSound(SoundType type) const;
 };
 
