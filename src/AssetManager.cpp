@@ -64,19 +64,4 @@ std::unique_ptr<sf::Music> AssetManager::GetSoundtrack(const std::string& filePa
 	return music;
 }
 
-const sf::Texture& AssetManager::GetTexture(const TextureType type) const
-{
-	return *(m_textures.at(type).get());
-}
-
-const sf::Font& AssetManager::GetFont(const FontType type) const
-{
-	return *(m_fonts.at(type).get());
-}
-
-const sf::SoundBuffer& AssetManager::GetSound(const SoundType type) const
-{
-	return *(m_sounds.at(type).get());
-}
-
 

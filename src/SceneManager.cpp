@@ -36,8 +36,3 @@ void SceneManager::ProcessSceneChange()
         m_sceneStack.top()->Init();
     }
 }
-
-std::unique_ptr<Scene>& SceneManager::GetCurrent()
-{
-    return m_sceneStack.top();
-}

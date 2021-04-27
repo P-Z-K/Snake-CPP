@@ -21,7 +21,7 @@ private:
 public:
 	Snake();
 
-	const std::vector<sf::Sprite>& GetBody() const;
+	const std::vector<sf::Sprite>& GetBody() const {return m_snakeBody;}
 
 	void Init(const sf::Texture& head, const sf::Texture& tail);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

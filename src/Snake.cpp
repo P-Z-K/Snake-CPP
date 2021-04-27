@@ -75,11 +75,6 @@ bool Snake::IsSelfIntersects() const
 	return false;
 }
 
-const std::vector<sf::Sprite>& Snake::GetBody() const
-{
-	return m_snakeBody;
-}
-
 void Snake::InitPosition()
 {
 	using Settings::Unit;

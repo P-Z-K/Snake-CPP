@@ -18,7 +18,7 @@ private:
 public:
 	SceneManager() = default;
 
-	std::unique_ptr<Scene>& GetCurrent();
+	Scene& GetCurrent() {return *(m_sceneStack.top().get());}
 
 	void Push(std::unique_ptr<Scene> scene, bool wantReplace = false);
 	void Pop();

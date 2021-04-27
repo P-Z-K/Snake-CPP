@@ -48,8 +48,8 @@ public:
 	void LoadSoundBuffer(const std::string& filePath, SoundType type);
 	std::unique_ptr<sf::Music> GetSoundtrack(const std::string& filePath) const;
 
-	const sf::Texture& GetTexture(TextureType type) const;
-	const sf::Font&	 GetFont(FontType type) const;
-	const sf::SoundBuffer& GetSound(SoundType type) const;
+	const sf::Texture& GetTexture(const TextureType type) const {return *(m_textures.at(type).get());}
+	const sf::Font& GetFont(const FontType type) const {return *(m_fonts.at(type).get());}
+	const sf::SoundBuffer& GetSound(const SoundType type) const {return *(m_sounds.at(type).get());}
 };
 
