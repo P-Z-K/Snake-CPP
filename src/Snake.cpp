@@ -4,12 +4,12 @@
 #include "Settings.h"
 
 
-Snake::Snake() :
+Snake:: Snake() :
 	m_snakeBody(std::vector<sf::Sprite>(Settings::Snake_Start_Length))
 {
 	m_snakeBody.reserve(32);
 	m_head = m_snakeBody.begin();
-}
+} 
 
 void Snake::Init(const sf::Texture& head, const sf::Texture& tail)
 {
