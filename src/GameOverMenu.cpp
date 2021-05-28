@@ -1,6 +1,5 @@
 #include "GameOverMenu.h"
 
-#include "Scene.h"
 #include "GamePlay.h"
 
 GameOverMenu::GameOverMenu(std::shared_ptr<Context> context) :

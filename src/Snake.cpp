@@ -1,6 +1,7 @@
+#include "Snake.h"
+
 #include <iostream>
 
-#include "Snake.h"
 #include "Settings.h"
 
 

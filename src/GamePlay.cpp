@@ -3,9 +3,9 @@
 #include <iostream>
 
 #include "Game.h"
-#include "Snake.h"
-#include "PauseMenu.h"
 #include "GameOverMenu.h"
+#include "PauseMenu.h"
+#include "Snake.h"
 
 GamePlay::GamePlay(std::shared_ptr<Context> context) :
 	m_context(context),

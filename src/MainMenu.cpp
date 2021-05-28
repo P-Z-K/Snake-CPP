@@ -1,7 +1,7 @@
 #include "MainMenu.h"
 
-#include "GamePlay.h"
 #include "Game.h"
+#include "GamePlay.h"
 
 MainMenu::MainMenu(std::shared_ptr<Context> context) :
 	m_context(context)
