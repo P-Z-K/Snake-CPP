@@ -1,8 +1,8 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include <memory>
+
+#include <SFML/Graphics.hpp>
 
 #include "Game.h"
 #include "Scene.h"

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML\Graphics.hpp>
 
-#include <memory>
 #include <map>
+#include <memory>
 #include <string>
 
 enum class TextureType

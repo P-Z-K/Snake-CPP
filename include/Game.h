@@ -1,11 +1,10 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
-
 #include <memory>
 
 #include "AssetManager.h"
 #include "SceneManager.h"
+#include "SFML/Graphics.hpp"
 
 
 struct Context

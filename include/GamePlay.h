@@ -1,11 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-
-#include <memory>
 #include <array>
+#include <memory>
 #include <random>
+
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "Game.h"
 #include "Scene.h"

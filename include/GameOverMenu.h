@@ -1,8 +1,8 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <RichText.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <memory>
 
